@@ -1,0 +1,14 @@
+Package: MeteoDataTrentino
+Maintainer: Emanuele Cordano <emanuele.cordano@gmail.com>
+License: GPL (>= 2)
+Title: Get Real-Time Meteorological Data in Trentino
+Type: Package
+Author: Emanuele Cordano
+Description: MISSING
+Version: 0.3
+Date: 2016-03-22
+Repository: CRAN
+Depends:
+    XML,stringr,sp,RSMET
+URL: NA
+RoxygenNote: 5.0.1
