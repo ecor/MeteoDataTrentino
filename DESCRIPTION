@@ -4,11 +4,11 @@ License: GPL (>= 2)
 Title: Get Real-Time Meteorological Data in Trentino
 Type: Package
 Author: Emanuele Cordano
-Description: MISSING
-Version: 0.3
-Date: 2016-03-22
+Description: The wheater and snow data are provided by the stations of the Meteorological Service of the Province of Trento (www.meteotrentino.it) as Open Data through the following through the http://dati.trentino.it/group/cat-meteo . The downloaded can be coerced as  SMET objects and imported within an R environment. 
+Version: 0.4
+Date: 2016-05-04
 Repository: CRAN
 Depends:
     XML,stringr,sp,RSMET
-URL: NA
+URL: https://github.com/ecor/MeteoDataTrentino
 RoxygenNote: 5.0.1
