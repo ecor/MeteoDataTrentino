@@ -9,16 +9,14 @@ The weather and snow data are provided by the stations of the [Meteorological Se
 
 Form the R console, **<u>MeteoDataTrentino</u>** can be installed dirlectly from Github making use of <a href="">devtools</a> packagethe following commands:
 
-	
 
-* * *
+> library(devtools)
 
- > library(devtools)
- > install_github("ecor/MeteoDataTrentino")
-	
+> install_github("ecor/MeteoDataTrentino")
 
-###   
-Smart Tutorial
+
+
+###   Smart Tutorial
 
 Under construction
 
