@@ -46,12 +46,8 @@
 	</p>
 	<h3 class="western"><a name="installation"></a><font color="#0000ff">Download and
 	Installation </font></h3>
-		<p>
-			Form the R console, <b><u>MeteoDataTrentino</u></b>  can be installed dirlectly from
-			Github making use of <a href="">devtools</a> packagethe following
-			commands:
-		<pre>
-	<hr align="left" width="1%"> > library(devtools)
+	<p>Lanch form the R console, the following commands: 
+	<pre> > library(devtools)
     > install_github("ecor/MeteoDataTrentino")
 	</pre> 
 	</p>
