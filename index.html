@@ -20,50 +20,55 @@
 
     <section class="main-content">
       <h1>
-<a id="meteodatatrentino" class="anchor" href="#meteodatatrentino" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MeteoDataTrentino</h1>
-
-<h2>
-<a id="get-real-time-meteorological-data-in-trentino-alps-italy" class="anchor" href="#get-real-time-meteorological-data-in-trentino-alps-italy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get Real-Time Meteorological Data in Trentino, Alps, Italy</h2>
-
-<p><a name="download-zip"></a><a name="download-tar-gz"></a><a name="view-on-github"></a><a href="https://github.com/ecor/MeteoDataTrentino/zipball/master">Download .zip</a> <a href="https://github.com/ecor/MeteoDataTrentino/tarball/master">Download .tar.gz</a> <a href="https://github.com/ecor/MeteoDataTrentino">View on GitHub</a></p>
-
-<hr>
+<a id="meteodatatrentino-get-real-time-meteorological-data-in-trentino-alps-italy" class="anchor" href="#meteodatatrentino-get-real-time-meteorological-data-in-trentino-alps-italy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MeteoDataTrentino: Get Real-Time Meteorological Data in Trentino, Alps, Italy</h1>
 
 <h3>
-<a id="welcome-to-meteodatatrentino-r-package" class="anchor" href="#welcome-to-meteodatatrentino-r-package" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="welcome-to-github-pages"></a>Welcome to MeteoDataTrentino R package</h3>
+<a id="introction-to-meteodatatrentino-r-package" class="anchor" href="#introction-to-meteodatatrentino-r-package" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introction to MeteoDataTrentino <a href="https://www.r-project.org/">R</a> package</h3>
 
-<p>The weather and snow data are provided by the stations of the <a href="www.meteotrentino.it">Meteorological Service of the Province of Trento</a> (<a href="www.meteotrentino.it">www.meteotrentino.it</a>) as Open Data through the following through the . <a href="http://dati.trentino.it/group/cat-meteo">Open Data portal</a> . The downloaded can be coerced as <a href="https://cran.r-project.org/web/packages/RSMET/index.html">SMET</a> objects and imported within an R environment  </p>
+<p>The weather and snow data are provided by the stations of the <a href="www.meteotrentino.it">Meteorological Service of the Province of Trento</a> (<a href="www.meteotrentino.it">www.meteotrentino.it</a>) as Open Data through the following through the . <a href="http://dati.trentino.it/group/cat-meteo">Open Data portal</a> . The downloaded can be coerced as <a href="https://cran.r-project.org/web/packages/RSMET/index.html">SMET</a> objects and imported within an <a href="https://www.r-project.org/">R</a> environment  </p>
 
 <h3>
 <a id="download-and-installation" class="anchor" href="#download-and-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="installation"></a>Download and Installation</h3>
 
-<p>Form the R console, <strong>MeteoDataTrentino</strong> can be installed dirlectly from Github making use of <a href="">devtools</a> packagethe following commands:</p>
-
-<hr>
+<p>Form the R console, <strong>MeteoDataTrentino</strong> can be installed dirlectly from Github making use of <a href="https://cran.r-project.org/web/packages/devtools/index.html">devtools</a> packagethe following commands:</p>
 
 <blockquote>
-<p>library(devtools)
-install_github("ecor/MeteoDataTrentino")</p>
+<p>library(devtools)</p>
+
+<p>install_github("ecor/MeteoDataTrentino")</p>
 </blockquote>
 
-<p>Smart Tutorial</p>
+<h3>
+<a id="smart-tutorial" class="anchor" href="#smart-tutorial" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Smart Tutorial</h3>
 
-<p>Under construction</p>
+<p>Once installed, type on the <a href="https://www.r-project.org/">R</a> console: </p>
+
+<blockquote>
+<p>library(MeteoDataTrentino) </p>
+</blockquote>
+
+<p>to load the package, then play with "help" commands to see the functions and follow their example (always updated):</p>
+
+<blockquote>
+<p>help(package="MeteoDataTrentino",help_type="html")</p>
+</blockquote>
+
+<p>Then, you can browse the package content and the R functions. You can also see the single function documentation page: </p>
+
+<blockquote>
+<p>help(getMetaDataTrentino,help_type="html")
+help(getMeteoDataTrentino,help_type="html")</p>
+</blockquote>
 
 <h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="authors-and-contributors"></a>Authors and Contributors</h3>
+<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
 <p>This package is authored by Emanuele Cordano (<a href="https://www.linkedin.com/in/emanuele-cordano-31995333">LinkedIn</a> / <a href="https://github.com/ecor">Github</a>). Any comments / questions / collaboration of any kind are very welcomed, just send an email.</p>
 
 <h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="support-or-contact"></a>Support or Contact</h3>
+<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
 
 <p>Having trouble with MeteoDataTrentino and documentation does not help you? Check on the contact form of <a href="https://www.rendena100.eu/">Rendena100.eu</a> or contact the package mantainer.</p>
-
-<p>MeteoDataTrentino is maintained by <a href="https://github.com/ecor">ecor</a><br>
-This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-
-<p></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ecor/MeteoDataTrentino">MeteoDataTrentino</a> is maintained by <a href="https://github.com/ecor">ecor</a>.</span>
