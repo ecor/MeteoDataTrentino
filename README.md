@@ -7,7 +7,7 @@ The weather and snow data are provided by the stations of the [Meteorological Se
 
 ### <a name="installation"></a><font color="#0000ff">Download and Installation</font>
 
-Form the R console, **<u>MeteoDataTrentino</u>** can be installed dirlectly from Github making use of <a href="">devtools</a> packagethe following commands:
+Form the R console, **<u>MeteoDataTrentino</u>** can be installed dirlectly from Github making use of [devtools](https://cran.r-project.org/web/packages/devtools/index.html) packagethe following commands:
 
 
 > library(devtools)
@@ -18,7 +18,19 @@ Form the R console, **<u>MeteoDataTrentino</u>** can be installed dirlectly from
 
 ###   Smart Tutorial
 
-Under construction
+Once installed, type on the R console: 
+
+> library(MeteoDataTrentino) 
+
+to load the package, then play with "help" commands to see the functions and follow their example (always updated):
+
+>  help(package="MeteoDataTrentino",help_type="html")
+
+Then, you can browse the package content and the R functions. You can also see the single function documentation page: 
+
+> help(getMetaDataTrentino,help_type="html")
+> help(getMeteoDataTrentino,help_type="html")
+
 
 ###  Authors and Contributors
 
