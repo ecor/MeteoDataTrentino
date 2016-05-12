@@ -38,6 +38,6 @@ This package is authored by Emanuele Cordano ([LinkedIn](https://www.linkedin.co
 
 ### Support or Contact
 
-Having trouble with MeteoDataTrentino and documentation does not help you? Check on the contact form of [Rendena100.eu](https://www.rendena100.eu/) or contact the package mantainer.
+Having trouble with MeteoDataTrentino and documentation does not help you? Check on the contact form of [Rendena100.eu](http://www.rendena100.eu/) or contact the package mantainer.
 
 
