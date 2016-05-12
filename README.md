@@ -1,7 +1,7 @@
 # MeteoDataTrentino: Get Real-Time Meteorological Data in Trentino, Alps, Italy
 
 
-### Introction to MeteoDataTrentino [R](https://www.r-project.org/) package
+### Introduction to MeteoDataTrentino [R](https://www.r-project.org/) package
 
 The weather and snow data are provided by the stations of the [Meteorological Service of the Province of Trento](http://www.meteotrentino.it) ([www.meteotrentino.it](http://www.meteotrentino.it)) as Open Data through the following through the . [Open Data portal](http://dati.trentino.it/group/cat-meteo) . The downloaded can be coerced as [SMET](https://cran.r-project.org/web/packages/RSMET/index.html) objects and imported within an [R](https://www.r-project.org/) environment  
 
