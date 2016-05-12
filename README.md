@@ -7,7 +7,7 @@ The weather and snow data are provided by the stations of the [Meteorological Se
 
 ### <a name="installation"></a><font color="#0000ff">Download and Installation</font>
 
-Form the R console, **<u>MeteoDataTrentino</u>** can be installed dirlectly from Github making use of [devtools](https://cran.r-project.org/web/packages/devtools/index.html) packagethe following commands:
+Form the R console, **<u>MeteoDataTrentino</u>** can be installed dirlectly from Github making use of [devtools](https://cran.r-project.org/web/packages/devtools/index.html) package the following commands:
 
 
 > >library(devtools)
