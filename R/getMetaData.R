@@ -226,7 +226,7 @@ getMetaDataTrentino <- function(url="http://dati.meteotrentino.it/service.asmx/l
 			ll <- as.list(out$station_id)
 			names(ll) <- out$station_id
 
-			print(ll)
+		
 			##out <- 
 			
 			

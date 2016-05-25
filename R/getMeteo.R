@@ -73,9 +73,9 @@ getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="http://dati.met
 	
 	
 	
-	
-	out <- readLines(url)
-	
+	###print(url) print
+	out <- try(readLines(url),silent=TRUE)
+	####print(out)
 	
 	if (!isXMLString(out)) {
 		
@@ -88,12 +88,23 @@ getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="http://dati.met
 		
 	}
 	
-	out <- xmlTreeParse(out, asText=TRUE)
 	
+	
+	out <- try(xmlTreeParse(out, asText=TRUE),silent=TRUE)
+	
+	if (class(out)=="try-error") {
+		
+		return(out)
+	}
 	## http://dati.meteotrentino.it/service.asmx/listaStazioni
 	
 #	main_node <- out$doc$children[[1]]
 	main_node  <-xmlRoot(out)
+	
+	if (class(main_node)=="try-error") {
+		
+		return(out)
+	}
 	##XMLappy(main_node,FUN=function(x){x})
 	##XMLChidren(main_node)
 	
@@ -148,6 +159,8 @@ getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="http://dati.met
 	
 	if (length(out)==0) {
 		
+		warning("No data found, function  returns NULL!")
+		out <- NULL
 		return(out)
 		
 		
