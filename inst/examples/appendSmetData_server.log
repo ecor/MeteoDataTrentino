@@ -61,7 +61,7 @@ Loading required package: RSMET
 > #newsmet <- getMeteoDataPiemonte(x=getPiemonteJSON(destfile=jsonfile))
 > 
 > metadata <- getMetaDataTrentino(return.type="list")
-'data.frame':	208 obs. of  11 variables:
+'data.frame':	206 obs. of  11 variables:
  $ station_id       : chr  "T0154" "T0405" "T0153" "T0146" ...
  $ station_name     : chr  "Ala (Convento)" "Ala (Maso Le Pozze)" "Ala (Ronchi)" "Aldeno (San Zeno)" ...
  $ station_shortname: chr  "Ala Convento" "SM Ala Maso Le Pozze" "SM Ala Ronchi" "SM Aldeno San Zeno" ...
@@ -86,8 +86,8 @@ Maximum error coordinate: 387.002022 along x and 109.986139 along y!
 113      T0103                 Passo Rolle       SM Passo Rolle     2012
 124      T0380 Pian Palu' (Malga Giumella)    SM Malga Giumella     1945
 139      T0076        Rabbi (San Bernardo)          S. Bernardo     1132
-147      T0147                    Rovereto          SM Rovereto      203
-199      T0364 Vermiglio (Capanna Presena) SEBA Capanna Presena     2730
+146      T0147                    Rovereto          SM Rovereto      203
+198      T0364 Vermiglio (Capanna Presena) SEBA Capanna Presena     2730
     latitude longitude        x       y                    location       x_
 14  45.82393  10.95981 652226.0 5076359 Brentonico (Santa Caterina) 652232.7
 18  46.25978  11.02838 656324.0 5124913          Campodenno (frana) 656324.0
@@ -100,8 +100,8 @@ Maximum error coordinate: 387.002022 along x and 109.986139 along y!
 113 46.29797  11.78697 714636.0 5130930                 Passo Rolle 714636.4
 124 46.34087  10.61249 624098.1 5133198 Pian Palu' (Malga Giumella) 624088.8
 139 46.40048  10.84439 642167.0 5140308        Rabbi (San Bernardo) 641780.0
-147 45.89644  11.04379 658565.0 5084532                    Rovereto 658549.0
-199 46.22799  10.58013 621741.0 5120602 Vermiglio (Capanna Presena) 621849.0
+146 45.89644  11.04379 658565.0 5084532                    Rovereto 658549.0
+198 46.22799  10.58013 621741.0 5120602 Vermiglio (Capanna Presena) 621849.0
          y_         err
 14  5076353   8.8890352
 18  5124911   1.9588723
@@ -114,8 +114,8 @@ Maximum error coordinate: 387.002022 along x and 109.986139 along y!
 113 5130930   0.5297450
 124 5133185  16.1257307
 139 5140198 402.3276221
-147 5084572  43.0963227
-199 5120593 108.3710387
+146 5084572  43.0963227
+198 5120593 108.3710387
 Warning messages:
 1: In readLines(url) :
   incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/listaStazioni'
@@ -267,7 +267,6 @@ Importing T0076 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiSt
 Importing T0075 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0075
 Importing T0240 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0240
 Importing T0436 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0436
-Importing T0298 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0298
 Importing T0236 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0236
 Importing T0424 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0424
 Importing T0211 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0211
@@ -328,7 +327,6 @@ Importing T0416 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiSt
 Importing T0243 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0243
 Importing T0228 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0228
 Importing T0326 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0326
-Importing T0325 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0325
 Importing T0411 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0411
 Importing T0101 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0101
 Importing T0059 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0059
@@ -359,9 +357,7 @@ There were 50 or more warnings (use warnings() to see the first 50)
 + 	
 + 	
 + }
-Warning messages:
-1: In RSMET::smet(file = object, ...) : NAs introduced by coercion
-2: In RSMET::smet(file = object, ...) : NAs introduced by coercion
+There were 38 warnings (use warnings() to see them)
 > 
 > 
 > 
@@ -383,9 +379,7 @@ Warning messages:
 > 
 > 
 > appendsmet <- mapply(FUN=collapse.smet,x=oldsmet,y=newsmet)
-Warning message:
-In (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp VW DW TA == timestamp TA VW DW   units_offset: 0 0 0 NA == 0 273.15 0 0   units_multiplier: 1 1 1 NA == 1 1 1 1   station_id: T0364 == T0364
+There were 18 warnings (use warnings() to see them)
 > names(appendsmet) <- sapply(X=appendsmet,FUN=function(x){x@header$station_id})
 > # The new appended smet was created !!
 > # They are written in the following directory: (please modify as youor purpose)
@@ -503,7 +497,6 @@ In (function (x, y, headers = NULL, date.field = "timestamp")  :
 [1] "T0027"
 [1] "T0432"
 [1] "T0381"
-[1] "T0364"
 [1] "T0416"
 [1] "T0228"
 [1] "T0411"
@@ -522,4 +515,4 @@ In (function (x, y, headers = NULL, date.field = "timestamp")  :
 > 
 > proc.time()
    user  system elapsed 
- 30.574   0.228  50.976 
+110.238   0.386 128.547 
