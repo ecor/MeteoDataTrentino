@@ -394,7 +394,6 @@ There were 18 warnings (use warnings() to see them)
 [1] "T0153"
 [1] "T0146"
 [1] "T0401"
-[1] "T0402"
 [1] "T0015"
 [1] "T0443"
 [1] "T0415"
@@ -515,4 +514,4 @@ There were 18 warnings (use warnings() to see them)
 > 
 > proc.time()
    user  system elapsed 
-110.238   0.386 128.547 
+116.487   0.394 134.750 
