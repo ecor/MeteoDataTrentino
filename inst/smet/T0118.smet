@@ -5,13 +5,13 @@ latitude = 46.17062753
 longitude = 11.21801939
 altitude = 652
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  Cembra
-station_shortname =  SM Cembra
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0118
+station_name =   Cembra
+station_shortname =   SM Cembra
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0118
 [DATA]
 2016-08-15T00:00:00 19.9 -999.0 1.9  29   0
 2016-08-15T00:15:00 19.6    0.0 1.4  28   0
@@ -159,3 +159,9 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 26.6    0.0 2.4 199 828
 2016-08-16T13:00:00 26.6    0.0 2.5 191 823
 2016-08-16T13:15:00 27.0    0.0 2.0 197 824
+2016-08-16T13:30:00 28.2    0.0 1.1 226 836
+2016-08-16T13:45:00 27.4    0.0 2.0 168 722
+2016-08-16T14:00:00 27.8    0.0 2.1 222 727
+2016-08-16T14:15:00 28.3    0.0 2.1 231 756
+2016-08-16T14:30:00 28.2    0.0 1.6 233 640
+2016-08-16T14:45:00 26.4    0.0 1.7 236 249

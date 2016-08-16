@@ -48,7 +48,7 @@ getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="http://dati.met
 		
 		names(station) <- station
 		
-		out <- lapply(X=station,FUN=getMeteoDataTrentino,verbose=verbose,tz=tz,...)
+		out <- lapply(X=station,FUN=getMeteoDataTrentino,verbose=verbose,tz=tz,smet=smet,url=url,...)
 		
 		return(out)
 		
@@ -239,8 +239,11 @@ getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="http://dati.met
 			out[,names(out)=="PINT"] <- out[,names(out)=="PINT"]/dt
 		}
 		
-		
-		if (smet==TRUE) {
+		if ((smet==TRUE) & (0 %in% dim(out))) {
+			
+			out <- NULL
+			
+		} else if (smet==TRUE) {
 
 					out <- out[,(names(out) %in% c(nn,"timestamp"))]
 					

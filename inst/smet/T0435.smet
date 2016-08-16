@@ -5,13 +5,13 @@ latitude = 46.24490223
 longitude = 10.83451876
 altitude = 1775
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT
 units_offset = 0 273.15 0
 units_multiplier = 1 1 1
-station_name =  Pinzolo (Malga Zeledria)
-station_shortname =  SM Malga Zeledria
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0435
+station_name =   Pinzolo (Malga Zeledria)
+station_shortname =   SM Malga Zeledria
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0435
 [DATA]
 2016-08-15T00:00:00 12.5 -999.0
 2016-08-15T00:15:00 12.7    0.0
@@ -163,3 +163,9 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 18.7    0.0
 2016-08-16T13:00:00 17.7    0.0
 2016-08-16T13:15:00 17.3    0.0
+2016-08-16T13:30:00 18.0    0.0
+2016-08-16T13:45:00 17.6    0.0
+2016-08-16T14:00:00 17.0    0.0
+2016-08-16T14:15:00 16.1    0.0
+2016-08-16T14:30:00 15.6    0.0
+2016-08-16T14:45:00 15.2    0.0

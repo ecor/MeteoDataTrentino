@@ -5,13 +5,13 @@ latitude = 46.09564639
 longitude = 11.10130522
 altitude = 194
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  Trento (Roncafort)
-station_shortname =  SM Trento Roncafort
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0135
+station_name =   Trento (Roncafort)
+station_shortname =   SM Trento Roncafort
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0135
 [DATA]
 2016-08-15T00:00:00 21.9 -999 0.4 284   0
 2016-08-15T00:30:00 21.5    0 0.3 156   0
@@ -162,3 +162,9 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 28.5    0 0.8 319 917
 2016-08-16T13:00:00 28.9    0 1.0 235 906
 2016-08-16T13:15:00 28.9    0 1.2 217 902
+2016-08-16T13:30:00 29.1    0 1.3 240 856
+2016-08-16T13:45:00 29.3    0 2.3 182 870
+2016-08-16T14:00:00 29.3    0 2.7 180 890
+2016-08-16T14:15:00 29.1    0 2.0 179 643
+2016-08-16T14:30:00 29.2    0 3.3 297 642
+2016-08-16T14:45:00 29.3    0 3.1 290 770

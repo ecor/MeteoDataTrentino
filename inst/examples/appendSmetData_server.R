@@ -28,7 +28,7 @@ library(RSMET)
 
 
 oldsmetdir <- '/home/ecor/local/MeteoDataTrentino/inst/smet' 
-####oldsmetdir <- '/home/ecor/Dropbox/R-packages/MeteoDataTrentino/inst/smet' 
+###oldsmetdir <- '/home/ecor/Dropbox/R-packages/MeteoDataTrentino/inst/smet' 
 appendsmet_dir <- oldsmetdir ###'/home/ecor/Dropbox/R-packages/MeteoDataBayern/inst/a_smet'
 
 ###
@@ -39,7 +39,7 @@ appendsmet_dir <- oldsmetdir ###'/home/ecor/Dropbox/R-packages/MeteoDataBayern/i
 
 metadata <- getMetaDataTrentino(return.type="list")
 
-nn <- names(metadata)[!(names(metadata) %in% c("T0365","T0473","T0404"))]
+nn <- names(metadata)###[!(names(metadata) %in% c("T0365","T0473","T0404"))]
 
 
 newsmet <- getMeteoDataTrentino(station=metadata[nn])

@@ -5,13 +5,13 @@ latitude = 45.96782575
 longitude = 11.09174056
 altitude = 182
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  Aldeno (San Zeno)
-station_shortname =  SM Aldeno San Zeno
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0146
+station_name =   Aldeno (San Zeno)
+station_shortname =   SM Aldeno San Zeno
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0146
 [DATA]
 2016-08-15T00:00:00 18.9 -999 0.6 323   0
 2016-08-15T00:15:00 18.8    0 0.6 346   0
@@ -163,3 +163,9 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 28.2    0 1.2  91 937
 2016-08-16T13:00:00 27.8    0 1.6 188 655
 2016-08-16T13:15:00 27.6    0 2.2 206 446
+2016-08-16T13:30:00 28.2    0 2.6 185 869
+2016-08-16T13:45:00 28.6    0 2.9 186 746
+2016-08-16T14:00:00 29.0    0 4.3 177 767
+2016-08-16T14:15:00 28.9    0 4.1 179 568
+2016-08-16T14:30:00 29.4    0 4.2 188 717
+2016-08-16T14:45:00 29.4    0 4.5 184 571

@@ -5,13 +5,13 @@ latitude = 46.22350556
 longitude = 10.58311366
 altitude = 2852
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA VW DW
 units_offset = 0 273.15 0 0
 units_multiplier = 1 1 1 1
-station_name =  Ghiacciaio Presena
-station_shortname =  SEBA Gh. Presena
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0439
+station_name =   Ghiacciaio Presena
+station_shortname =   SEBA Gh. Presena
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0439
 [DATA]
 2016-08-15T00:15:00  8.1 0.6 103
 2016-08-15T00:45:00  7.0 1.0  73

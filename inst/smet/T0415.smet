@@ -5,13 +5,13 @@ latitude = 46.43322744
 longitude = 10.88923955
 altitude = 1815
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT
 units_offset = 0 273.15 0
 units_multiplier = 1 1 1
-station_name =  Bresimo (Malga Bordolona)
-station_shortname =  SM Malga Bordolona
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0415
+station_name =   Bresimo (Malga Bordolona)
+station_shortname =   SM Malga Bordolona
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0415
 [DATA]
 2016-08-15T00:00:00 12.5 -999.0
 2016-08-15T00:15:00 12.9    0.0
@@ -162,3 +162,7 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:30:00 16.3    0.0
 2016-08-16T12:45:00 16.2    0.0
 2016-08-16T13:00:00 16.2    0.0
+2016-08-16T13:15:00 16.8    0.0
+2016-08-16T13:30:00 16.9    0.0
+2016-08-16T13:45:00 15.8    0.0
+2016-08-16T14:00:00 14.5    0.8

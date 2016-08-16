@@ -5,13 +5,13 @@ latitude = 46.28404336
 longitude = 10.69462705
 altitude = 1575
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT
 units_offset = 0 273.15 0
 units_multiplier = 1 1 1
-station_name =  Vermiglio (Masi di Palu')
-station_shortname =  SM Masi Palu'
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0416
+station_name =   Vermiglio (Masi di Palu')
+station_shortname =   SM Masi Palu'
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0416
 [DATA]
 2016-08-15T00:00:00 12.1 -999.0
 2016-08-15T00:15:00 12.3    0.0
@@ -161,3 +161,7 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:30:00 18.3    0.0
 2016-08-16T12:45:00 19.2    0.0
 2016-08-16T13:00:00 19.8    0.0
+2016-08-16T13:15:00 19.6    0.0
+2016-08-16T13:30:00 20.1    0.0
+2016-08-16T13:45:00 18.4    0.0
+2016-08-16T14:00:00 16.9    0.8

@@ -5,13 +5,13 @@ latitude = 45.73923692
 longitude = 11.06535547
 altitude = 692
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  Ala (Ronchi)
-station_shortname =  SM Ala Ronchi
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0153
+station_name =   Ala (Ronchi)
+station_shortname =   SM Ala Ronchi
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0153
 [DATA]
 2016-08-15T00:30:00 18.3 -999 0.0  60   0
 2016-08-15T00:45:00 18.2    0 0.0  42   0
@@ -67,3 +67,10 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:30:00 24.3    0 0.0 199 573
 2016-08-16T12:45:00 24.1    0 0.0 188 515
 2016-08-16T13:00:00 24.5    0 0.3 199 586
+2016-08-16T13:15:00 24.2    0 0.3 261 281
+2016-08-16T13:30:00 23.9    0 0.0 246 234
+2016-08-16T13:45:00 24.1    0 0.0 222 368
+2016-08-16T14:00:00 24.6    0 0.1 184 504
+2016-08-16T14:15:00 25.3    0 0.3 250 606
+2016-08-16T14:30:00 25.7    0 1.2 213 598
+2016-08-16T14:45:00 26.2    0 1.8 230 587

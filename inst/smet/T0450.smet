@@ -5,13 +5,13 @@ latitude = 46.26159587
 longitude = 11.79625262
 altitude = 1470
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  San Martino di Castrozza
-station_shortname =  SM S. Martino
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0450
+station_name =   San Martino di Castrozza
+station_shortname =   SM S. Martino
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0450
 [DATA]
 2016-08-15T00:00:00 14.6 -999.0 0.5 262   0
 2016-08-15T00:15:00 14.4    0.0 0.5 236   0
@@ -162,3 +162,9 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 18.8    0.0 3.4 132 244
 2016-08-16T13:00:00 18.6    0.0 2.6  94 291
 2016-08-16T13:15:00 18.9    0.0 2.5  88 311
+2016-08-16T13:30:00 18.3    0.0 1.5  52 123
+2016-08-16T13:45:00 18.0    0.0 1.1  30 112
+2016-08-16T14:00:00 17.1    0.0 1.2 284 111
+2016-08-16T14:15:00 16.9    0.0 0.7 277  90
+2016-08-16T14:30:00 16.9    0.0 1.6  96 118
+2016-08-16T14:45:00 16.5    0.0 1.5  98 147

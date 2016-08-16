@@ -5,13 +5,13 @@ latitude = 46.05717778
 longitude = 11.6299111
 altitude = 801
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  Castello Tesino (Le Parti)
-station_shortname =  SM Castello Tesino
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0469
+station_name =   Castello Tesino (Le Parti)
+station_shortname =   SM Castello Tesino
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0469
 [DATA]
 2016-08-15T02:15:00 15.5 -999.0 0.1 309   0
 2016-08-15T02:30:00 15.9    0.0 0.0 296   0
@@ -148,3 +148,9 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 19.8    0.0 1.6 180 101
 2016-08-16T13:00:00 19.6    0.0 0.5  54 112
 2016-08-16T13:15:00 20.0    0.0 0.1  64 117
+2016-08-16T13:30:00 20.2    0.0 0.5 189 115
+2016-08-16T13:45:00 20.0    0.0 0.0  43 134
+2016-08-16T14:00:00 20.6    0.0 0.2 324 153
+2016-08-16T14:15:00 21.3    0.0 1.1 172 591
+2016-08-16T14:30:00 21.6    0.0 0.5 144 557
+2016-08-16T14:45:00 23.4    0.0 0.5 272 722

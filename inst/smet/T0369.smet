@@ -5,13 +5,13 @@ latitude = 45.91869117
 longitude = 11.20608489
 altitude = 1360
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  Passo Sommo
-station_shortname =  SM Passo Sommo
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0369
+station_name =   Passo Sommo
+station_shortname =   SM Passo Sommo
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0369
 [DATA]
 2016-08-15T00:00:00 14.5 -999.0 1.2 100   0
 2016-08-15T00:15:00 14.9    0.0 0.6  90   0
@@ -159,3 +159,9 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 20.8    0.0 3.5 267 441
 2016-08-16T13:00:00 20.7    0.0 3.3 259 378
 2016-08-16T13:15:00 20.6    0.0 3.0 252 340
+2016-08-16T13:30:00 20.9    0.0 1.8 268 497
+2016-08-16T13:45:00 20.5    0.0 2.1 309 280
+2016-08-16T14:00:00 19.1    0.0 2.6  35 245
+2016-08-16T14:15:00 18.0    0.0 2.6  32 163
+2016-08-16T14:30:00 17.8    0.0 2.3  19 116
+2016-08-16T14:45:00 17.1    0.0 1.8  25  40

@@ -5,13 +5,13 @@ latitude = 46.08108786
 longitude = 11.55710853
 altitude = 843
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT
 units_offset = 0 273.15 0
 units_multiplier = 1 1 1
-station_name =  Bieno
-station_shortname =  SM Bieno
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0015
+station_name =   Bieno
+station_shortname =   SM Bieno
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0015
 [DATA]
 2016-08-15T00:00:00 17.8 -999.0
 2016-08-15T00:15:00 17.6    0.0
@@ -163,3 +163,9 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 25.0    0.0
 2016-08-16T13:00:00 24.9    0.0
 2016-08-16T13:15:00 23.4    0.0
+2016-08-16T13:30:00 23.7    0.0
+2016-08-16T13:45:00 24.4    0.0
+2016-08-16T14:00:00 24.6    0.0
+2016-08-16T14:15:00 25.4    0.0
+2016-08-16T14:30:00 25.1    0.0
+2016-08-16T14:45:00 24.3    0.0

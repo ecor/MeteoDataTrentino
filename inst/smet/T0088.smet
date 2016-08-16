@@ -5,13 +5,13 @@ latitude = 46.32064658
 longitude = 11.10164465
 altitude = 838
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT
 units_offset = 0 273.15 0
 units_multiplier = 1 1 1
-station_name =  Tres
-station_shortname =  SM Tres
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0088
+station_name =   Tres
+station_shortname =   SM Tres
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0088
 [DATA]
 2016-08-15T00:00:00 16.9 -999.0
 2016-08-15T00:15:00 17.0    0.0
@@ -163,3 +163,9 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 24.8    0.0
 2016-08-16T13:00:00 24.9    0.0
 2016-08-16T13:15:00 24.8    0.0
+2016-08-16T13:30:00 25.1    0.0
+2016-08-16T13:45:00 25.8    0.0
+2016-08-16T14:00:00 24.7    0.0
+2016-08-16T14:15:00 23.0    0.0
+2016-08-16T14:30:00 22.4    0.0
+2016-08-16T14:45:00 22.4    0.0

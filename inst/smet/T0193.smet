@@ -5,13 +5,13 @@ latitude = 45.87017291
 longitude = 10.87753798
 altitude = 90
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  Torbole (Belvedere)
-station_shortname =  SM Torbole Belvedere
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0193
+station_name =   Torbole (Belvedere)
+station_shortname =   SM Torbole Belvedere
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0193
 [DATA]
 2016-08-15T00:00:00 23.0 -999.0 2.9  68    0
 2016-08-15T00:15:00 23.1    0.0 1.7  67    0
@@ -162,3 +162,9 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 25.7    0.0 7.1 202  542
 2016-08-16T13:00:00 26.0    0.0 6.0 221  999
 2016-08-16T13:15:00 26.3    0.0 6.0 221 1040
+2016-08-16T13:30:00 27.8    0.0 6.1 204  979
+2016-08-16T13:45:00 27.7    0.0 6.7 203  447
+2016-08-16T14:00:00 27.8    0.0 6.0 196  672
+2016-08-16T14:15:00 28.9    0.0 7.0 197  865
+2016-08-16T14:30:00 27.5    0.0 6.7 194  237
+2016-08-16T14:45:00 26.5    0.0 4.8 190  112

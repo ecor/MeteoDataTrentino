@@ -5,13 +5,13 @@ latitude = 46.18148794
 longitude = 10.63482092
 altitude = 1418
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  Val Genova (Malga Caret)
-station_shortname =  SM Val Genova
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0433
+station_name =   Val Genova (Malga Caret)
+station_shortname =   SM Val Genova
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0433
 [DATA]
 2016-08-15T00:00:00 11.2 -999.0 0.3 302   0
 2016-08-15T00:15:00 11.2    0.0 0.4 324   0
@@ -161,3 +161,7 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:30:00 20.5    0.0 2.5 165 419
 2016-08-16T12:45:00 19.5    0.0 2.4 157 342
 2016-08-16T13:00:00 19.0    0.0 2.2 157 307
+2016-08-16T13:15:00 18.4    0.0 2.3 157 117
+2016-08-16T13:30:00 17.4    0.0 0.4 152  73
+2016-08-16T13:45:00 16.5    3.2 0.3 111 105
+2016-08-16T14:00:00 14.8    0.8 0.8  93  91

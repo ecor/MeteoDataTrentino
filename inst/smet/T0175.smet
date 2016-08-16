@@ -5,13 +5,13 @@ latitude = 46.15647979
 longitude = 10.7574828
 altitude = 760
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  Pinzolo
-station_shortname =  SM Pinzolo
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0175
+station_name =   Pinzolo
+station_shortname =   SM Pinzolo
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0175
 [DATA]
 2016-08-15T00:00:00 17.0 -999.0 0.0   7   0
 2016-08-15T00:15:00 17.0    0.0 0.1 359   0
@@ -116,3 +116,8 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 26.0    0.0 3.8 124 873
 2016-08-16T13:00:00 25.5    0.0 3.7 120 746
 2016-08-16T13:15:00 24.5    0.0 3.0 129 290
+2016-08-16T13:30:00 23.3    0.0 2.2 129 199
+2016-08-16T13:45:00 23.0    0.0 2.1 147 261
+2016-08-16T14:00:00 22.6    0.0 1.6 139 124
+2016-08-16T14:15:00 22.0    0.0 0.5 147  52
+2016-08-16T14:30:00 21.1    0.0 0.0  17  11

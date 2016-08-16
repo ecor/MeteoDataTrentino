@@ -5,13 +5,13 @@ latitude = 46.40048031
 longitude = 10.84438525
 altitude = 1132
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  Rabbi (San Bernardo)
-station_shortname =  S. Bernardo
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0076
+station_name =   Rabbi (San Bernardo)
+station_shortname =   S. Bernardo
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0076
 [DATA]
 2016-08-15T00:00:00 15.9 -999.0 0.5 319    0
 2016-08-15T00:15:00 16.0    0.0 1.0 320    0
@@ -121,3 +121,8 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 22.3    0.0 1.6 118  557
 2016-08-16T13:00:00 23.6    0.0 2.7 126  987
 2016-08-16T13:15:00 22.8    0.0 1.6 110  194
+2016-08-16T13:30:00 21.5    0.0 1.0  68  110
+2016-08-16T13:45:00 20.4    0.0 1.0  79   84
+2016-08-16T14:00:00 19.8    0.0 0.6  85   78
+2016-08-16T14:15:00 18.9    0.0 0.4  88   71
+2016-08-16T14:30:00 18.0    0.0 0.0  48   36

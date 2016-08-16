@@ -5,13 +5,13 @@ latitude = 46.36444875
 longitude = 10.67820972
 altitude = 1585
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  Peio
-station_shortname =  SM Peio
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0366
+station_name =   Peio
+station_shortname =   SM Peio
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0366
 [DATA]
 2016-08-15T00:00:00 14.8 -999.0 2.0 281   0
 2016-08-15T00:15:00 14.7    0.0 1.6 318   0
@@ -158,3 +158,12 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T11:30:00 18.4    0.0 1.6 113 927
 2016-08-16T11:45:00 18.7    0.0 1.7 106 941
 2016-08-16T12:00:00 18.7    0.0 1.9 114 952
+2016-08-16T12:15:00 19.2    0.0 2.8 119 962
+2016-08-16T12:30:00 19.1    0.0 3.0 105 987
+2016-08-16T12:45:00 19.3    0.0 3.6 114 955
+2016-08-16T13:00:00 19.4    0.0 4.1 106 971
+2016-08-16T13:15:00 19.7    0.0 3.8 109 841
+2016-08-16T13:30:00 19.9    0.0 4.0 111 935
+2016-08-16T13:45:00 20.7    0.0 4.2 117 764
+2016-08-16T14:00:00 19.5    0.0 4.1 137 340
+2016-08-16T14:15:00 19.0    0.0 4.2 140 265

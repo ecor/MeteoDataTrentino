@@ -5,13 +5,13 @@ latitude = 46.01365069
 longitude = 11.05486939
 altitude = 1490
 nodata = -999
-tz =  +01
+tz =   +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =  Monte Bondone (Viote)
-station_shortname =  SM M. Bondone Viote
-station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0368
+station_name =   Monte Bondone (Viote)
+station_shortname =   SM M. Bondone Viote
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0368
 [DATA]
 2016-08-15T00:00:00 14.3 -999.0 0.6 330   0
 2016-08-15T00:15:00 14.3    0.0 0.6 332   0
@@ -162,3 +162,9 @@ station_url =  http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codi
 2016-08-16T12:45:00 18.3    0.0 2.1 122 835
 2016-08-16T13:00:00 18.6    0.0 2.4 133 783
 2016-08-16T13:15:00 18.4    0.0 2.0 154 791
+2016-08-16T13:30:00 18.7    0.0 2.1 111 802
+2016-08-16T13:45:00 18.7    0.0 2.3 116 513
+2016-08-16T14:00:00 18.3    0.0 2.3 118 447
+2016-08-16T14:15:00 18.4    0.0 1.9  92 389
+2016-08-16T14:30:00 18.3    0.0 2.0 115 381
+2016-08-16T14:45:00 18.2    0.0 1.0 102 291
