@@ -28,16 +28,18 @@ library(RSMET)
 
 
 oldsmetdir <- '/home/ecor/local/MeteoDataTrentino/inst/smet' 
-
+####oldsmetdir <- '/home/ecor/Dropbox/R-packages/MeteoDataTrentino/inst/smet' 
 appendsmet_dir <- oldsmetdir ###'/home/ecor/Dropbox/R-packages/MeteoDataBayern/inst/a_smet'
 
+###
+###ll <- getMeteoDataTrentino(station = metadata[nn[!(nn %in% c("T0473","T0404"))]]
 
-# TO DO 
-#newsmet <- getMeteoDataPiemonte(x=getPiemonteJSON(destfile=jsonfile))
+
+####
 
 metadata <- getMetaDataTrentino(return.type="list")
 
-nn <- names(metadata)[!(names(metadata) %in% c("T0365"))]
+nn <- names(metadata)[!(names(metadata) %in% c("T0365","T0473","T0404"))]
 
 
 newsmet <- getMeteoDataTrentino(station=metadata[nn])
