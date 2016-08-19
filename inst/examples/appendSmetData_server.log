@@ -53,12 +53,14 @@ Loading required package: RSMET
 > 
 > 
 > oldsmetdir <- '/home/ecor/local/MeteoDataTrentino/inst/smet' 
-> 
+> ####oldsmetdir <- '/home/ecor/Dropbox/R-packages/MeteoDataTrentino/inst/smet' 
 > appendsmet_dir <- oldsmetdir ###'/home/ecor/Dropbox/R-packages/MeteoDataBayern/inst/a_smet'
 > 
+> ###
+> ###ll <- getMeteoDataTrentino(station = metadata[nn[!(nn %in% c("T0473","T0404"))]]
 > 
-> # TO DO 
-> #newsmet <- getMeteoDataPiemonte(x=getPiemonteJSON(destfile=jsonfile))
+> 
+> ####
 > 
 > metadata <- getMetaDataTrentino(return.type="list")
 'data.frame':	206 obs. of  11 variables:
@@ -122,7 +124,7 @@ Warning messages:
 2: In getMetaDataTrentino(return.type = "list") :
   In the above station, error exceeds 0.500000 meters! 
 > 
-> nn <- names(metadata)[!(names(metadata) %in% c("T0365"))]
+> nn <- names(metadata)[!(names(metadata) %in% c("T0365","T0473","T0404"))]
 > 
 > 
 > newsmet <- getMeteoDataTrentino(station=metadata[nn])
@@ -182,8 +184,332 @@ Importing T0080 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiSt
 Importing T0237 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0237
 Importing T0105 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0105
 Importing T0203 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0203
-Importing T0473 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0473
-Error in if (tzv >= 0) { : missing value where TRUE/FALSE needed
-Calls: getMeteoDataTrentino -> lapply -> FUN -> as.smet -> as.smet -> .local
-In addition: There were 50 or more warnings (use warnings() to see the first 50)
-Execution halted
+Importing T0444 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0444
+Importing T0439 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0439
+Importing T0442 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0442
+Importing T0174 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0174
+Importing T0426 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0426
+Importing T0423 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0423
+Importing T0407 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0407
+Importing T0113 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0113
+Importing T0178 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0178
+Importing T0209 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0209
+Importing T0429 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0429
+Importing T0190 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0190
+Importing T0430 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0430
+Importing T0371 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0371
+Importing T0032 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0032
+Importing T0121 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0121
+Importing T0245 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0245
+Importing T0246 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0246
+Importing T0207 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0207
+Importing T0010 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0010
+Importing T0119 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0119
+Importing T0232 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0232
+Importing T0286 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0286
+Importing T0074 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0074
+Importing T0357 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0357
+Importing T0238 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0238
+Importing T0375 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0375
+Importing T0265 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0265
+Importing T0071 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0071
+Importing T0420 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0420
+Importing T0090 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0090
+Importing T0408 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0408
+Importing T0098 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0098
+Importing T0096 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0096
+Importing T0383 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0383
+Importing T0182 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0182
+Importing T0144 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0144
+Importing T0327 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0327
+Importing T0368 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0368
+Importing T0169 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0169
+Importing T0226 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0226
+Importing T0372 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0372
+Importing T0151 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0151
+Importing T0186 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0186
+Importing T0008 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0008
+Importing T0267 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0267
+Importing T0355 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0355
+Importing T0168 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0168
+Importing T0024 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0024
+Importing T0094 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0094
+Importing T0384 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0384
+Importing T0082 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0082
+Importing T0425 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0425
+Importing T0103 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0103
+Importing T0369 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0369
+Importing T0360 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0360
+Importing T0069 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0069
+Importing T0104 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0104
+Importing T0064 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0064
+Importing T0366 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0366
+Importing T0409 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0409
+Importing T0001 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0001
+Importing T0092 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0092
+Importing T0063 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0063
+Importing T0380 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0380
+Importing T0140 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0140
+Importing T0428 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0428
+Importing T0422 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0422
+Importing T0018 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0018
+Importing T0175 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0175
+Importing T0435 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0435
+Importing T0239 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0239
+Importing T0142 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0142
+Importing T0120 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0120
+Importing T0167 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0167
+Importing T0389 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0389
+Importing T0102 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0102
+Importing T0324 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0324
+Importing T0241 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0241
+Importing T0076 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0076
+Importing T0075 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0075
+Importing T0240 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0240
+Importing T0436 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0436
+Importing T0236 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0236
+Importing T0424 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0424
+Importing T0211 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0211
+Importing T0147 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0147
+Importing T0374 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0374
+Importing T0417 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0417
+Importing T0184 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0184
+Importing T0414 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0414
+Importing T0021 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0021
+Importing T0450 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0450
+Importing T0038 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0038
+Importing T0242 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0242
+Importing T0084 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0084
+Importing T0189 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0189
+Importing T0172 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0172
+Importing T0139 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0139
+Importing T0115 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0115
+Importing T0116 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0116
+Importing T0212 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0212
+Importing T0183 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0183
+Importing T0141 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0141
+Importing T0393 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0393
+Importing T0163 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0163
+Importing T0370 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0370
+Importing T0110 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0110
+Importing T0392 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0392
+Importing T0014 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0014
+Importing T0003 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0003
+Importing T0200 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0200
+Importing T0148 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0148
+Importing T0376 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0376
+Importing T0179 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0179
+Importing T0026 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0026
+Importing T0419 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0419
+Importing T0193 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0193
+Importing T0354 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0354
+Importing T0356 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0356
+Importing T0129 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0129
+Importing T0454 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0454
+Importing T0137 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0137
+Importing T0135 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0135
+Importing T0136 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0136
+Importing T0088 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0088
+Importing T0109 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0109
+Importing T0413 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0413
+Importing T0177 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0177
+Importing T0166 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0166
+Importing T0433 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0433
+Importing T0027 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0027
+Importing T0432 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0432
+Importing T0114 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0114
+Importing T0149 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0149
+Importing T0150 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0150
+Importing T0363 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0363
+Importing T0381 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0381
+Importing T0364 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0364
+Importing T0416 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0416
+Importing T0243 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0243
+Importing T0228 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0228
+Importing T0326 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0326
+Importing T0411 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0411
+Importing T0101 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0101
+Importing T0059 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0059
+Importing T0412 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0412
+There were 50 or more warnings (use warnings() to see the first 50)
+> newsmet <-  newsmet[!sapply(X=newsmet,is.null)]
+> newsmet <-  newsmet[sapply(X=newsmet,FUN=function(x){class(x)=="smet"})]
+> 
+> 
+> 
+> oldsmetfiles <- list.files(oldsmetdir,pattern=".smet",full.name=TRUE)
+> 
+> 
+> 
+> if (length(oldsmetfiles)>0) {
++ 	
++ #	oldsmet <- lapply(X=oldsmetfiles,FUN=function(x) {
++ #				print(x) 
++ #				as.smet(x)
++ #			})
++ 	
++ 	oldsmet <- lapply(X=oldsmetfiles,FUN=as.smet)
++ 	names(oldsmet) <- sapply(X=oldsmet,FUN=function(x){x@header$station_id})
++ 
++ } else {
++ 	
++ 	oldsmet <- newsmet
++ 	
++ 	
++ }
+> 
+> 
+> 
+> names_n <- intersect(names(newsmet),names(oldsmet))
+> names_u <- union(names(newsmet),names(oldsmet))
+> names_diff <- names_n[!(names_u %in% names(oldsmet))]
+> 
+> 
+> oldsmet[names_diff] <- newsmet[names_diff]
+> 
+> names_n <- intersect(names(newsmet),names(oldsmet))
+> 
+> newsmet <- newsmet[names_n]
+> oldsmet <- oldsmet[names_n]
+> 
+> 
+> 
+> 
+> 
+> 
+> appendsmet <- mapply(FUN=collapse.smet,x=oldsmet,y=newsmet)
+> names(appendsmet) <- sapply(X=appendsmet,FUN=function(x){x@header$station_id})
+> # The new appended smet was created !!
+> # They are written in the following directory: (please modify as youor purpose)
+> 
+> appendsmet <- lapply(X=appendsmet,FUN=function(x,dir) {
++ 			print(x@header$station_id)
++ 			x@file <- sprintf("%s/%s.smet",dir,x@header$station_id)
++ 			print(x,file="internal")
++ 			
++ 		},dir=appendsmet_dir)
+[1] "T0405"
+[1] "T0153"
+[1] "T0146"
+[1] "T0401"
+[1] "T0402"
+[1] "T0015"
+[1] "T0443"
+[1] "T0415"
+[1] "T0229"
+[1] "T0030"
+[1] "T0437"
+[1] "T0445"
+[1] "T0421"
+[1] "T0431"
+[1] "T0065"
+[1] "T0418"
+[1] "T0469"
+[1] "T0367"
+[1] "T0118"
+[1] "T0009"
+[1] "T0227"
+[1] "T0099"
+[1] "T0397"
+[1] "T0373"
+[1] "T0410"
+[1] "T0382"
+[1] "T0379"
+[1] "T0210"
+[1] "T0399"
+[1] "T0203"
+[1] "T0439"
+[1] "T0426"
+[1] "T0423"
+[1] "T0407"
+[1] "T0429"
+[1] "T0371"
+[1] "T0032"
+[1] "T0010"
+[1] "T0074"
+[1] "T0357"
+[1] "T0071"
+[1] "T0420"
+[1] "T0408"
+[1] "T0096"
+[1] "T0383"
+[1] "T0182"
+[1] "T0368"
+[1] "T0169"
+[1] "T0226"
+[1] "T0151"
+[1] "T0355"
+[1] "T0024"
+[1] "T0094"
+[1] "T0384"
+[1] "T0082"
+[1] "T0425"
+[1] "T0103"
+[1] "T0369"
+[1] "T0360"
+[1] "T0104"
+[1] "T0366"
+[1] "T0409"
+[1] "T0092"
+[1] "T0063"
+[1] "T0380"
+[1] "T0428"
+[1] "T0422"
+[1] "T0175"
+[1] "T0435"
+[1] "T0167"
+[1] "T0389"
+[1] "T0076"
+[1] "T0436"
+[1] "T0236"
+[1] "T0424"
+[1] "T0211"
+[1] "T0147"
+[1] "T0374"
+[1] "T0417"
+[1] "T0414"
+[1] "T0450"
+[1] "T0189"
+[1] "T0139"
+[1] "T0115"
+[1] "T0212"
+[1] "T0393"
+[1] "T0392"
+[1] "T0014"
+[1] "T0200"
+[1] "T0148"
+[1] "T0179"
+[1] "T0419"
+[1] "T0193"
+[1] "T0354"
+[1] "T0356"
+[1] "T0129"
+[1] "T0454"
+[1] "T0135"
+[1] "T0088"
+[1] "T0109"
+[1] "T0413"
+[1] "T0177"
+[1] "T0433"
+[1] "T0027"
+[1] "T0432"
+[1] "T0381"
+[1] "T0416"
+[1] "T0228"
+[1] "T0411"
+[1] "T0101"
+[1] "T0059"
+[1] "T0412"
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> proc.time()
+   user  system elapsed 
+ 28.464   0.213  60.532 

@@ -53,15 +53,17 @@ Loading required package: RSMET
 > 
 > 
 > oldsmetdir <- '/home/ecor/local/MeteoDataTrentino/inst/smet' 
-> 
+> ###oldsmetdir <- '/home/ecor/Dropbox/R-packages/MeteoDataTrentino/inst/smet' 
 > appendsmet_dir <- oldsmetdir ###'/home/ecor/Dropbox/R-packages/MeteoDataBayern/inst/a_smet'
 > 
+> ###
+> ###ll <- getMeteoDataTrentino(station = metadata[nn[!(nn %in% c("T0473","T0404"))]]
 > 
-> # TO DO 
-> #newsmet <- getMeteoDataPiemonte(x=getPiemonteJSON(destfile=jsonfile))
+> 
+> ####
 > 
 > metadata <- getMetaDataTrentino(return.type="list")
-'data.frame':	208 obs. of  11 variables:
+'data.frame':	206 obs. of  11 variables:
  $ station_id       : chr  "T0154" "T0405" "T0153" "T0146" ...
  $ station_name     : chr  "Ala (Convento)" "Ala (Maso Le Pozze)" "Ala (Ronchi)" "Aldeno (San Zeno)" ...
  $ station_shortname: chr  "Ala Convento" "SM Ala Maso Le Pozze" "SM Ala Ronchi" "SM Aldeno San Zeno" ...
@@ -86,8 +88,8 @@ Maximum error coordinate: 387.002022 along x and 109.986139 along y!
 113      T0103                 Passo Rolle       SM Passo Rolle     2012
 124      T0380 Pian Palu' (Malga Giumella)    SM Malga Giumella     1945
 139      T0076        Rabbi (San Bernardo)          S. Bernardo     1132
-147      T0147                    Rovereto          SM Rovereto      203
-199      T0364 Vermiglio (Capanna Presena) SEBA Capanna Presena     2730
+146      T0147                    Rovereto          SM Rovereto      203
+198      T0364 Vermiglio (Capanna Presena) SEBA Capanna Presena     2730
     latitude longitude        x       y                    location       x_
 14  45.82393  10.95981 652226.0 5076359 Brentonico (Santa Caterina) 652232.7
 18  46.25978  11.02838 656324.0 5124913          Campodenno (frana) 656324.0
@@ -100,8 +102,8 @@ Maximum error coordinate: 387.002022 along x and 109.986139 along y!
 113 46.29797  11.78697 714636.0 5130930                 Passo Rolle 714636.4
 124 46.34087  10.61249 624098.1 5133198 Pian Palu' (Malga Giumella) 624088.8
 139 46.40048  10.84439 642167.0 5140308        Rabbi (San Bernardo) 641780.0
-147 45.89644  11.04379 658565.0 5084532                    Rovereto 658549.0
-199 46.22799  10.58013 621741.0 5120602 Vermiglio (Capanna Presena) 621849.0
+146 45.89644  11.04379 658565.0 5084532                    Rovereto 658549.0
+198 46.22799  10.58013 621741.0 5120602 Vermiglio (Capanna Presena) 621849.0
          y_         err
 14  5076353   8.8890352
 18  5124911   1.9588723
@@ -114,15 +116,15 @@ Maximum error coordinate: 387.002022 along x and 109.986139 along y!
 113 5130930   0.5297450
 124 5133185  16.1257307
 139 5140198 402.3276221
-147 5084572  43.0963227
-199 5120593 108.3710387
+146 5084572  43.0963227
+198 5120593 108.3710387
 Warning messages:
 1: In readLines(url) :
   incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/listaStazioni'
 2: In getMetaDataTrentino(return.type = "list") :
   In the above station, error exceeds 0.500000 meters! 
 > 
-> nn <- names(metadata)[!(names(metadata) %in% c("T0365"))]
+> nn <- names(metadata)###[!(names(metadata) %in% c("T0365","T0473","T0404"))]
 > 
 > 
 > newsmet <- getMeteoDataTrentino(station=metadata[nn])
@@ -161,6 +163,7 @@ Importing T0009 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiSt
 Importing T0227 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0227
 Importing T0099 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0099
 Importing T0262 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0262
+Importing T0365 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0365
 Importing T0377 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0377
 Importing T0160 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0160
 Importing T0083 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0083
@@ -267,7 +270,6 @@ Importing T0076 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiSt
 Importing T0075 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0075
 Importing T0240 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0240
 Importing T0436 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0436
-Importing T0298 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0298
 Importing T0236 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0236
 Importing T0424 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0424
 Importing T0211 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0211
@@ -328,7 +330,6 @@ Importing T0416 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiSt
 Importing T0243 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0243
 Importing T0228 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0228
 Importing T0326 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0326
-Importing T0325 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0325
 Importing T0411 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0411
 Importing T0101 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0101
 Importing T0059 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0059
@@ -399,7 +400,6 @@ There were 50 or more warnings (use warnings() to see the first 50)
 [1] "T0443"
 [1] "T0415"
 [1] "T0229"
-[1] "T0323"
 [1] "T0030"
 [1] "T0437"
 [1] "T0445"
@@ -431,7 +431,6 @@ There were 50 or more warnings (use warnings() to see the first 50)
 [1] "T0010"
 [1] "T0074"
 [1] "T0357"
-[1] "T0404"
 [1] "T0071"
 [1] "T0420"
 [1] "T0408"
@@ -455,6 +454,7 @@ There were 50 or more warnings (use warnings() to see the first 50)
 [1] "T0366"
 [1] "T0409"
 [1] "T0092"
+[1] "T0063"
 [1] "T0380"
 [1] "T0428"
 [1] "T0422"
@@ -497,7 +497,6 @@ There were 50 or more warnings (use warnings() to see the first 50)
 [1] "T0027"
 [1] "T0432"
 [1] "T0381"
-[1] "T0364"
 [1] "T0416"
 [1] "T0228"
 [1] "T0411"
@@ -516,4 +515,4 @@ There were 50 or more warnings (use warnings() to see the first 50)
 > 
 > proc.time()
    user  system elapsed 
- 25.821   0.175  41.195 
+ 28.169   0.236 162.880 

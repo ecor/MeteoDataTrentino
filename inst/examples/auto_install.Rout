@@ -1,0 +1,73 @@
+
+R version 3.3.0 (2016-05-03) -- "Supposedly Educational"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> # TODO: Add comment
+> # 
+> # Author: ecor
+> ###############################################################################
+> #!/usr/bin/env Rscript
+> # file auto_install.R
+> #
+> # This file installs MeteoDataTrentino R Packages
+> #
+> # author: Emanuele Cordano on 16-08-2015
+> 
+> #This program is free software: you can redistribute it and/or modify
+> #it under the terms of the GNU General Public License as published by
+> #the Free Software Foundation, either version 3 of the License, or
+> #(at your option) any later version.
+> #
+> #This program is distributed in the hope that it will be useful,
+> #but WITHOUT ANY WARRANTY; without even the implied warranty of
+> #MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> #GNU General Public License for more details.
+> #
+> #You should have received a copy of the GNU General Public License
+> #along with this program.  If not, see <http://www.gnu.org/licenses/>.
+> 
+> ###############################################################################
+> rm(list=ls())
+> 
+> library(devtools)
+> install_github("ecor/MeteoDataTrentino")
+Downloading GitHub repo ecor/MeteoDataTrentino@master
+from URL https://api.github.com/repos/ecor/MeteoDataTrentino/zipball/master
+Installing MeteoDataTrentino
+Skipping 1 package ahead of CRAN: RSMET
+'/usr/lib/R/bin/R' --no-site-file --no-environ --no-save --no-restore --quiet  \
+  CMD INSTALL  \
+  '/tmp/RtmpYUlLPJ/devtools6a594351115b/ecor-MeteoDataTrentino-05a97b0'  \
+  --library='/home/ecor/R/x86_64-pc-linux-gnu-library/3.3' --install-tests 
+
+* installing *source* package ‘MeteoDataTrentino’ ...
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (MeteoDataTrentino)
+> 
+> 
+> proc.time()
+   user  system elapsed 
+  3.497   0.392  12.059 

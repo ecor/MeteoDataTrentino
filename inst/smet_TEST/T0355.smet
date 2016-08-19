@@ -1,0 +1,17 @@
+SMET 1.1 ASCII
+[HEADER]
+station_id = T0355
+latitude = 46.11658975
+longitude = 11.66289737
+altitude = 1610
+nodata = -999
+tz =   +01
+fields = timestamp TA PINT VW DW
+units_offset = 0 273.15 0 0 0
+units_multiplier = 1 1 1 1 1
+station_name =   Passo Brocon
+station_shortname =   SEBA Passo Brocon
+station_url =   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0355
+[DATA]
+2016-08-16T07:45:00 14.8 -999 2.7 285
+2016-08-16T08:15:00 16.4    0 1.9 310
