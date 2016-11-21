@@ -5,13 +5,13 @@ latitude = 46.00640917
 longitude = 11.6565163
 altitude = 238
 nodata = -999
-tz =                                           +01
+tz =                                            +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =                                           Grigno
-station_shortname =                                           SM Grigno
-station_url =                                           http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0423
+station_name =                                            Grigno
+station_shortname =                                            SM Grigno
+station_url =                                            http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0423
 [DATA]
 2016-11-15T01:00:00 -1.6 -999.0 0.1 157   0
 2016-11-15T03:15:00  0.3    0.0 0.2 131   0
@@ -460,3 +460,15 @@ station_url =                                           http://dati.meteotrentin
 2016-11-21T15:00:00 11.5    0.0 0.3 261  60
 2016-11-21T15:15:00 11.5    0.0 0.4  16  44
 2016-11-21T15:30:00 11.5    0.0 0.9 293  31
+2016-11-21T15:45:00 11.4    0.0 0.7 255  19
+2016-11-21T16:00:00 11.1    0.0 1.0 166   0
+2016-11-21T16:15:00 10.9    0.0 0.8 161   0
+2016-11-21T16:30:00 10.5    0.0 0.6 157   0
+2016-11-21T16:45:00 10.3    0.0 0.9 132   0
+2016-11-21T17:00:00  9.7    0.0 0.1 132   0
+2016-11-21T17:15:00  9.4    0.0 0.4  93   0
+2016-11-21T17:30:00  9.3    0.0 0.4 156   0
+2016-11-21T17:45:00  9.0    0.0 1.1 120   0
+2016-11-21T18:00:00  9.1    0.0 0.8 124   0
+2016-11-21T18:15:00  9.6    0.0 0.6 140   0
+2016-11-21T18:30:00  9.2    0.0 0.2  43   0

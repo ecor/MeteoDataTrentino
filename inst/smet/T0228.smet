@@ -5,13 +5,13 @@ latitude = 46.42438453
 longitude = 11.63606489
 altitude = 2040
 nodata = -999
-tz =                                                                                                                                                                                                                                                                                                                                                                                                                                           +01
+tz =                                                                                                                                                                                                                                                                                                                                                                                                                                            +01
 fields = timestamp TA PINT
 units_offset = 0 273.15 0
 units_multiplier = 1 1 1
-station_name =                                                                                                                                                                                                                                                                                                                                                                                                                                           Vigo Di Fassa (Stalon De Vael)
-station_shortname =                                                                                                                                                                                                                                                                                                                                                                                                                                           SM Stalon De Vael
-station_url =                                                                                                                                                                                                                                                                                                                                                                                                                                           http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0228
+station_name =                                                                                                                                                                                                                                                                                                                                                                                                                                            Vigo Di Fassa (Stalon De Vael)
+station_shortname =                                                                                                                                                                                                                                                                                                                                                                                                                                            SM Stalon De Vael
+station_url =                                                                                                                                                                                                                                                                                                                                                                                                                                            http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0228
 [DATA]
 2016-09-28T00:00:00   4.0 -999.0
 2016-09-28T00:15:00   3.9    0.0
@@ -5223,3 +5223,15 @@ station_url =                                                                   
 2016-11-21T14:30:00   3.3 -999.0
 2016-11-21T14:45:00   3.1 -999.0
 2016-11-21T15:00:00   2.9 -999.0
+2016-11-21T15:15:00   2.8 -999.0
+2016-11-21T15:30:00   2.6 -999.0
+2016-11-21T15:45:00   2.5 -999.0
+2016-11-21T16:00:00   2.5 -999.0
+2016-11-21T16:15:00   2.3 -999.0
+2016-11-21T16:30:00   2.1 -999.0
+2016-11-21T16:45:00   2.1 -999.0
+2016-11-21T17:00:00   2.0 -999.0
+2016-11-21T17:15:00   2.0 -999.0
+2016-11-21T17:30:00   1.8 -999.0
+2016-11-21T17:45:00   1.7 -999.0
+2016-11-21T18:00:00   1.9 -999.0
