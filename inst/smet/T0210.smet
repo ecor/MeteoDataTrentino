@@ -5,13 +5,13 @@ latitude = 45.91534926
 longitude = 11.16435266
 altitude = 1121
 nodata = -999
-tz =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              +01
+tz = +01
 fields = timestamp TA PINT
 units_offset = 0 273.15 0
 units_multiplier = 1 1 1
-station_name =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              Folgaria
-station_shortname =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              SM Folgaria
-station_url =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0210
+station_name = Folgaria
+station_shortname = SM Folgaria
+station_url = http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0210
 [DATA]
 2016-08-15T00:00:00  16.5 -999.0
 2016-08-15T00:15:00  16.5    0.0
@@ -17762,6 +17762,7 @@ station_url =                                                                   
 2017-02-13T23:15:00   0.6    0.0
 2017-02-13T23:30:00   0.9    0.0
 2017-02-13T23:45:00   0.6    0.0
+2017-02-14T00:00:00   0.4 -999.0
 2017-02-14T00:00:00   0.4    0.0
 2017-02-14T00:00:00   0.4 -999.0
 2017-02-14T00:15:00   0.6    0.0
@@ -17946,3 +17947,9 @@ station_url =                                                                   
 2017-02-15T21:00:00   5.2    0.0
 2017-02-15T21:15:00   4.4    0.0
 2017-02-15T21:30:00   4.0    0.0
+2017-02-15T21:45:00   5.1    0.0
+2017-02-15T22:00:00   4.8    0.0
+2017-02-15T22:15:00   4.5    0.0
+2017-02-15T22:30:00   4.2    0.0
+2017-02-15T22:45:00   4.4    0.0
+2017-02-15T23:00:00   4.6    0.0

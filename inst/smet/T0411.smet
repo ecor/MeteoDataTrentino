@@ -5,13 +5,13 @@ latitude = 46.08098391
 longitude = 10.66068115
 altitude = 1203
 nodata = -999
-tz =                                                                                                                                                                                                                                      +01
+tz = +01
 fields = timestamp TA
 units_offset = 0 273.15
 units_multiplier = 1 1
-station_name =                                                                                                                                                                                                                                      Villa Rendena (Rifugio Gork)
-station_shortname =                                                                                                                                                                                                                                      SM Rifugio Gork
-station_url =                                                                                                                                                                                                                                      http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0411
+station_name = Villa Rendena (Rifugio Gork)
+station_shortname = SM Rifugio Gork
+station_url = http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0411
 [DATA]
 2017-01-15T00:00:00  -6.7
 2017-01-15T00:15:00  -6.8

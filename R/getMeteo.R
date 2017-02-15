@@ -92,7 +92,7 @@ getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="http://dati.met
 	
 	out <- try(xmlTreeParse(out, asText=TRUE),silent=TRUE)
 	
-	if (class(out)=="try-error") {
+	if (class(out[[1]])=="try-error") {
 		
 		return(out)
 	}
@@ -101,7 +101,7 @@ getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="http://dati.met
 #	main_node <- out$doc$children[[1]]
 	main_node  <-xmlRoot(out)
 	
-	if (class(main_node)=="try-error") {
+	if (class(main_node[[1]])=="try-error") {
 		
 		return(out)
 	}

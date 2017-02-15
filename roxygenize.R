@@ -23,7 +23,7 @@
 library(roxygen2)
 
 options(repos = c(CRAN="http://cran.r-project.org"))
-
+options(warn=-1)
 
 path <- "/home/ecor/Dropbox/R-packages" 
 pkg_name <- "MeteoDataTrentino"

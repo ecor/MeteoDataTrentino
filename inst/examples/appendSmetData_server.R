@@ -19,7 +19,10 @@
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ###############################################################################
+options(warn=1)
+
 rm(list=ls())
+
 
 library(MeteoDataTrentino)
 library(RSMET)
@@ -88,7 +91,7 @@ oldsmet <- oldsmet[names_n]
 
 
 
-appendsmet <- mapply(FUN=collapse.smet,x=oldsmet,y=newsmet)
+appendsmet <- mapply(FUN=collapse.smet,x=newsmet,y=oldsmet)
 names(appendsmet) <- sapply(X=appendsmet,FUN=function(x){x@header$station_id})
 # The new appended smet was created !!
 # They are written in the following directory: (please modify as youor purpose)

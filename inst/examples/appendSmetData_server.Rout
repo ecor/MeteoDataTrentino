@@ -1,5 +1,5 @@
 
-R version 3.3.0 (2016-05-03) -- "Supposedly Educational"
+R version 3.3.2 (2016-10-31) -- "Sincere Pumpkin Patch"
 Copyright (C) 2016 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -40,20 +40,24 @@ Type 'q()' to quit R.
 > #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 > 
 > ###############################################################################
+> options(warn=1)
+> 
 > rm(list=ls())
+> 
 > 
 > library(MeteoDataTrentino)
 Loading required package: XML
 Loading required package: stringr
 Loading required package: sp
 Loading required package: RSMET
+Loading required package: reshape2
 > library(RSMET)
 > 
 > 
 > 
 > 
 > oldsmetdir <- '/home/ecor/local/MeteoDataTrentino/inst/smet' 
-> ###oldsmetdir <- '/home/ecor/Dropbox/R-packages/MeteoDataTrentino/inst/smet' 
+> oldsmetdir <- '/home/ecor/Dropbox/R-packages/MeteoDataTrentino/inst/smet' 
 > appendsmet_dir <- oldsmetdir ###'/home/ecor/Dropbox/R-packages/MeteoDataBayern/inst/a_smet'
 > 
 > ###
@@ -63,7 +67,9 @@ Loading required package: RSMET
 > ####
 > 
 > metadata <- getMetaDataTrentino(return.type="list")
-'data.frame':	206 obs. of  11 variables:
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/listaStazioni'
+'data.frame':	206 obs. of  13 variables:
  $ station_id       : chr  "T0154" "T0405" "T0153" "T0146" ...
  $ station_name     : chr  "Ala (Convento)" "Ala (Maso Le Pozze)" "Ala (Ronchi)" "Aldeno (San Zeno)" ...
  $ station_shortname: chr  "Ala Convento" "SM Ala Maso Le Pozze" "SM Ala Ronchi" "SM Aldeno San Zeno" ...
@@ -72,56 +78,58 @@ Loading required package: RSMET
  $ longitude        : num  11 11 11.1 11.1 10.9 ...
  $ x                : num  655530 657305 660674 662061 646623 ...
  $ y                : num  5069007 5072278 5067150 5092600 5087182 ...
+ $ inizio           : chr  "01/01/1921" "17/05/2012" "01/08/1927" "01/11/1923" ...
+ $ fine             : chr  "22/06/2005" "none" "none" "none" ...
  $ location         : chr  "Ala (Convento)" "Ala (Maso Le Pozze)" "Ala (Ronchi)" "Aldeno (San Zeno)" ...
  $ y_               : num  45.8 45.8 45.7 46 45.9 ...
  $ x_               : num  11 11 11.1 11.1 10.9 ...
-Maximum error coordinate: 387.002022 along x and 109.986139 along y!
+Maximum error coordinate: 45.000186 along x and 2245.700243 along y!
     station_id                station_name    station_shortname altitude
 14       T0443 Brentonico (Santa Caterina)  SM Brentonico S. C.      727
 18       T0323          Campodenno (frana) MTX Campodenno frana      610
 21       T0445     Canazei (Coi de Paussa)   SEBA Coi de Paussa     2376
 22       T0421                      Caoria            SM Caoria      803
 26       T0418 Castelfondo (Malga Castrin)     SM Malga Castrin     1815
-38       T0160           Cimego (Centrale)      Cimego Centrale      490
+37       T0160           Cimego (Centrale)      Cimego Centrale      490
+103      T0406   Paganella (Malga Terlago)  Paganella M.Terlago     1790
 104      T0008                  Paneveggio     IASMA Paneveggio     1540
 111      T0082               Passo Mendola     SM Passo Mendola     1315
 113      T0103                 Passo Rolle       SM Passo Rolle     2012
+119      T0366                        Peio              SM Peio     1585
 124      T0380 Pian Palu' (Malga Giumella)    SM Malga Giumella     1945
-139      T0076        Rabbi (San Bernardo)          S. Bernardo     1132
+142      T0436   Ragoli (Rifugio Alimonta)   SEBA Rif. Alimonta     2544
 146      T0147                    Rovereto          SM Rovereto      203
-198      T0364 Vermiglio (Capanna Presena) SEBA Capanna Presena     2730
-    latitude longitude        x       y                    location       x_
-14  45.82393  10.95981 652226.0 5076359 Brentonico (Santa Caterina) 652232.7
-18  46.25978  11.02838 656324.0 5124913          Campodenno (frana) 656324.0
-21  46.47196  11.84901 718717.0 5150433     Canazei (Coi de Paussa) 718717.4
-22  46.19188  11.68384 707093.3 5118869                      Caoria 707093.0
-26  46.51037  11.04392 656802.0 5152784 Castelfondo (Malga Castrin) 656802.0
-38  45.92035  10.62704 626142.0 5086558           Cimego (Centrale) 626165.4
-104 46.30952  11.74751 711553.0 5132108                  Paneveggio 711553.0
-111 46.41918  11.18934 668238.0 5142951               Passo Mendola 668238.7
-113 46.29797  11.78697 714636.0 5130930                 Passo Rolle 714636.4
-124 46.34087  10.61249 624098.1 5133198 Pian Palu' (Malga Giumella) 624088.8
-139 46.40048  10.84439 642167.0 5140308        Rabbi (San Bernardo) 641780.0
-146 45.89644  11.04379 658565.0 5084532                    Rovereto 658549.0
-198 46.22799  10.58013 621741.0 5120602 Vermiglio (Capanna Presena) 621849.0
-         y_         err
-14  5076353   8.8890352
-18  5124911   1.9588723
-21  5150432   0.8004706
-22  5118868   1.0272601
-26  5152785   1.1112286
-38  5086485  76.3916543
-104 5132107   0.7005232
-111 5142952   1.0901628
-113 5130930   0.5297450
-124 5133185  16.1257307
-139 5140198 402.3276221
-146 5084572  43.0963227
-198 5120593 108.3710387
-Warning messages:
-1: In readLines(url) :
-  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/listaStazioni'
-2: In getMetaDataTrentino(return.type = "list") :
+    latitude longitude        x       y     inizio       fine
+14  45.82393  10.95981 652226.0 5076359 21/12/2009       none
+18  46.25978  11.02838 656324.0 5124913 30/03/2004       none
+21  46.47196  11.84901 718717.0 5150433 01/01/2009       none
+22  46.19188  11.68384 707093.3 5118869 15/05/2007       none
+26  46.51037  11.04392 656802.0 5152784 30/05/2012       none
+37  45.92035  10.62704 626142.0 5086558 01/01/1978 03/01/2004
+103 46.16321  11.02224 656124.7 5111923 24/11/2016       none
+104 46.30952  11.74751 711553.0 5132108 15/01/2006 31/12/2012
+111 46.41918  11.18934 668238.0 5142951 01/01/1921       none
+113 46.29797  11.78697 714636.0 5130930 01/01/1921       none
+119 46.36436  10.67762 629091.0 5135910 17/05/2002       none
+124 46.34087  10.61249 624098.1 5133198 18/10/2011       none
+142 46.17254  10.89063 645977.0 5115115 30/06/2007       none
+146 45.89644  11.04379 658565.0 5084532 01/07/1921       none
+                       location       x_      y_          err
+14  Brentonico (Santa Caterina) 652232.7 5076353    8.8890352
+18           Campodenno (frana) 656324.0 5124911    1.9588723
+21      Canazei (Coi de Paussa) 718717.4 5150432    0.8004706
+22                       Caoria 707093.0 5118868    1.0272601
+26  Castelfondo (Malga Castrin) 656802.0 5152785    1.1112286
+37            Cimego (Centrale) 626165.4 5086485   76.3916543
+103   Paganella (Malga Terlago) 656124.7 5114169 2245.7002428
+104                  Paneveggio 711553.0 5132107    0.7005232
+111               Passo Mendola 668238.7 5142952    1.0901628
+113                 Passo Rolle 714636.4 5130930    0.5297450
+119                        Peio 629046.0 5135899   46.3249959
+124 Pian Palu' (Malga Giumella) 624088.8 5133185   16.1257307
+142   Ragoli (Rifugio Alimonta) 645938.9 5114956  163.5048925
+146                    Rovereto 658549.0 5084572   43.0963227
+Warning in getMetaDataTrentino(return.type = "list") :
   In the above station, error exceeds 0.500000 meters! 
 > 
 > nn <- names(metadata)###[!(names(metadata) %in% c("T0365","T0473","T0404"))]
@@ -129,212 +137,1582 @@ Warning messages:
 > 
 > newsmet <- getMeteoDataTrentino(station=metadata[nn])
 Importing T0154 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0154
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0154'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0405 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0405
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0405'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0153 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0153
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0153'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0146 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0146
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0146'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0192 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0192
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0192'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0322 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0322
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0322'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0401 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0401
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0401'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0204 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0204
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0204'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0402 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0402
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0402'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0015 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0015
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0015'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0222 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0222
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0222'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0152 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0152
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0152'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0155 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0155
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0155'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0443 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0443
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0443'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0415 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0415
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0415'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0231 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0231
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0231'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0229 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0229
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0229'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0323 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0323
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0323'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0030 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0030
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0030'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0437 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0437
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0437'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0445 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0445
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0445'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0421 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0421
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0421'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0029 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0029
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0029'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0431 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0431
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0431'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0065 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0065
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0065'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0418 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0418
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0418'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0224 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0224
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0224'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0469 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0469
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0469'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0367 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0367
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0367'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0107 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0107
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0107'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0118 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0118
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0118'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0009 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0009
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0009'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0227 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0227
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0227'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0099 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0099
-Importing T0262 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0262
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0099'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0365 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0365
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0365'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0377 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0377
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0377'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0160 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0160
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0160'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0083 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0083
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0083'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0397 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0397
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0397'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0068 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0068
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0068'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0017 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0017
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0017'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0156 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0156
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0156'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0157 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0157
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0157'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0158 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0158
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0158'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0373 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0373
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0373'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0410 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0410
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0410'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0233 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0233
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0233'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0086 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0086
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0086'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0382 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0382
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0382'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0379 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0379
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0379'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0210 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0210
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0210'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0399 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0399
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0399'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0080 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0080
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0080'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0237 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0237
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0237'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0105 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0105
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0105'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0203 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0203
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0203'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0473 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0473
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0473'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0444 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0444
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0444'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0439 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0439
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0439'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0442 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0442
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0442'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0174 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0174
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0174'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0426 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0426
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0426'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0423 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0423
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0423'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0407 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0407
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0407'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0113 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0113
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0113'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0178 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0178
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0178'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0209 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0209
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0209'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0429 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0429
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0429'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0190 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0190
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0190'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0430 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0430
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0430'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0371 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0371
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0371'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0032 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0032
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0032'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0121 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0121
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0121'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0245 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0245
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0245'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0246 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0246
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0246'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0207 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0207
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0207'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0010 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0010
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0010'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0119 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0119
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0119'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0232 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0232
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0232'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0286 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0286
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0286'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0074 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0074
-Importing T0357 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0357
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0074'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0238 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0238
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0238'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0375 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0375
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0375'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0404 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0404
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0404'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0265 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0265
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0265'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0071 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0071
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0071'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0420 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0420
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0420'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0090 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0090
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0090'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0408 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0408
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0408'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0098 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0098
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0098'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0096 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0096
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0096'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0383 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0383
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0383'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0182 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0182
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0182'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0144 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0144
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0144'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0327 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0327
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0327'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0368 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0368
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0368'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0169 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0169
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0169'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0226 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0226
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0226'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0372 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0372
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0372'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0151 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0151
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0151'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0186 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0186
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0186'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0262 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0262
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0262'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0406 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0406
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0406'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0008 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0008
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0008'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0267 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0267
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0267'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0355 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0355
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0355'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0168 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0168
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0168'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0024 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0024
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0024'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0094 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0094
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0094'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0384 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0384
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0384'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0082 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0082
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0082'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0425 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0425
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0425'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0103 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0103
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0103'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0369 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0369
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0369'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0360 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0360
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0360'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0069 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0069
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0069'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0104 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0104
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0104'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0064 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0064
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0064'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0366 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0366
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0366'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0409 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0409
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0409'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0001 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0001
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0001'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0092 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0092
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0092'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0063 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0063
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0063'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0380 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0380
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0380'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0140 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0140
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0140'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0428 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0428
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0428'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0422 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0422
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0422'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0018 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0018
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0018'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0175 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0175
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0175'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0435 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0435
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0435'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0239 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0239
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0239'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0142 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0142
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0142'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0120 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0120
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0120'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0167 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0167
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0167'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0389 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0389
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0389'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0102 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0102
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0102'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0324 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0324
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0324'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0241 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0241
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0241'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0076 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0076
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0076'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0075 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0075
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0075'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0240 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0240
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0240'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0436 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0436
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0436'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
 Importing T0236 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0236
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0236'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0424 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0424
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0424'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0211 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0211
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0211'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0147 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0147
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0147'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0374 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0374
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0374'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0417 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0417
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0417'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0184 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0184
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0184'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0414 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0414
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0414'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0021 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0021
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0021'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0450 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0450
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0450'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0038 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0038
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0038'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0242 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0242
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0242'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0084 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0084
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0084'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0189 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0189
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0189'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0172 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0172
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0172'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0139 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0139
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0139'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0115 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0115
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0115'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0116 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0116
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0116'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0212 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0212
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0212'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0183 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0183
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0183'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0141 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0141
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0141'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0393 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0393
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0393'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0163 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0163
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0163'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0370 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0370
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0370'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0110 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0110
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0110'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0392 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0392
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0392'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0014 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0014
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0014'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0003 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0003
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0003'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0200 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0200
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0200'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0148 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0148
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0148'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0376 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0376
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0376'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0179 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0179
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0179'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0026 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0026
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0026'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0419 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0419
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0419'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0193 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0193
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0193'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0354 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0354
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0354'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0356 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0356
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0356'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0129 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0129
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0129'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0454 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0454
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0454'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0137 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0137
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0137'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0135 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0135
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0135'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0136 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0136
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0136'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0088 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0088
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0088'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0109 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0109
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0109'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0413 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0413
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0413'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0177 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0177
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0177'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0166 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0166
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0166'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0433 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0433
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0433'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0027 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0027
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0027'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0432 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0432
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0432'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0114 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0114
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0114'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0149 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0149
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0149'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0150 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0150
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0150'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0363 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0363
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0363'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0381 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0381
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0381'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0364 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0364
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0364'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0416 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0416
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0416'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0243 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0243
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0243'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0228 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0228
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0228'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0326 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0326
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0326'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
 Importing T0411 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0411
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0411'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0101 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0101
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0101'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0059 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0059
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0059'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 Importing T0412 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0412
-There were 50 or more warnings (use warnings() to see the first 50)
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0412'
+Warning in if (class(main_node[[1]]) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(mult)) { :
+  the condition has length > 1 and only the first element will be used
+Warning in if (!is.na(offset)) { :
+  the condition has length > 1 and only the first element will be used
 > newsmet <-  newsmet[!sapply(X=newsmet,is.null)]
 > newsmet <-  newsmet[sapply(X=newsmet,FUN=function(x){class(x)=="smet"})]
 > 
@@ -380,7 +1758,33 @@ There were 50 or more warnings (use warnings() to see the first 50)
 > 
 > 
 > 
-> appendsmet <- mapply(FUN=collapse.smet,x=oldsmet,y=newsmet)
+> appendsmet <- mapply(FUN=collapse.smet,x=newsmet,y=oldsmet)
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0415 == T0415
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0229 == T0229
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0418 == T0418
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA VW DW ISWR == timestamp TA VW DW ISWR PINT   units_offset: 0 273.15 0 0 0 == 0 273.15 0 0 0 0   units_multiplier: 1 1 1 1 1 == 1 1 1 1 1 1   station_id: T0382 == T0382
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA VW DW ISWR == timestamp TA VW DW ISWR PINT   units_offset: 0 273.15 0 0 0 == 0 273.15 0 0 0 0   units_multiplier: 1 1 1 1 1 == 1 1 1 1 1 1   station_id: T0379 == T0379
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0429 == T0429
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0226 == T0226
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0380 == T0380
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0424 == T0424
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA VW DW ISWR == timestamp TA VW DW ISWR PINT   units_offset: 0 273.15 0 0 0 == 0 273.15 0 0 0 0   units_multiplier: 1 1 1 1 1 == 1 1 1 1 1 1   station_id: T0374 == T0374
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0413 == T0413
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA VW DW ISWR == timestamp TA VW DW ISWR PINT   units_offset: 0 273.15 0 0 0 == 0 273.15 0 0 0 0   units_multiplier: 1 1 1 1 1 == 1 1 1 1 1 1   station_id: T0433 == T0433
+Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0416 == T0416
 > names(appendsmet) <- sapply(X=appendsmet,FUN=function(x){x@header$station_id})
 > # The new appended smet was created !!
 > # They are written in the following directory: (please modify as youor purpose)
@@ -421,7 +1825,6 @@ There were 50 or more warnings (use warnings() to see the first 50)
 [1] "T0210"
 [1] "T0399"
 [1] "T0203"
-[1] "T0439"
 [1] "T0426"
 [1] "T0423"
 [1] "T0407"
@@ -430,7 +1833,6 @@ There were 50 or more warnings (use warnings() to see the first 50)
 [1] "T0032"
 [1] "T0010"
 [1] "T0074"
-[1] "T0357"
 [1] "T0071"
 [1] "T0420"
 [1] "T0408"
@@ -463,7 +1865,6 @@ There were 50 or more warnings (use warnings() to see the first 50)
 [1] "T0167"
 [1] "T0389"
 [1] "T0076"
-[1] "T0436"
 [1] "T0236"
 [1] "T0424"
 [1] "T0211"
@@ -515,4 +1916,4 @@ There were 50 or more warnings (use warnings() to see the first 50)
 > 
 > proc.time()
    user  system elapsed 
- 28.169   0.236 162.880 
+233.009   0.704 264.346 

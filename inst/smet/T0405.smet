@@ -5,13 +5,13 @@ latitude = 45.78613814
 longitude = 11.02374457
 altitude = 170
 nodata = -999
-tz =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     +01
+tz = +01
 fields = timestamp TA PINT
 units_offset = 0 273.15 0
 units_multiplier = 1 1 1
-station_name =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Ala (Maso Le Pozze)
-station_shortname =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     SM Ala Maso Le Pozze
-station_url =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0405
+station_name = Ala (Maso Le Pozze)
+station_shortname = SM Ala Maso Le Pozze
+station_url = http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0405
 [DATA]
 2016-08-15T00:00:00 18.2 -999.0
 2016-08-15T00:15:00 18.2    0.0
@@ -17315,6 +17315,7 @@ station_url =                                                                   
 2017-02-13T23:15:00  5.4    0.0
 2017-02-13T23:30:00  5.5    0.0
 2017-02-13T23:45:00  5.2    0.0
+2017-02-14T00:00:00  5.3 -999.0
 2017-02-14T00:00:00  5.3    0.0
 2017-02-14T00:00:00  5.3 -999.0
 2017-02-14T00:15:00  5.3    0.0
@@ -17499,3 +17500,9 @@ station_url =                                                                   
 2017-02-15T21:00:00  6.2    0.0
 2017-02-15T21:15:00  5.9    0.0
 2017-02-15T21:30:00  5.8    0.0
+2017-02-15T21:45:00  6.2    0.0
+2017-02-15T22:00:00  6.7    0.0
+2017-02-15T22:15:00  6.5    0.0
+2017-02-15T22:30:00  6.3    0.0
+2017-02-15T22:45:00  5.4    0.0
+2017-02-15T23:00:00  5.6    0.0

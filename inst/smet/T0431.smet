@@ -5,13 +5,13 @@ latitude = 46.26304408
 longitude = 11.33626355
 altitude = 1055
 nodata = -999
-tz =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              +01
+tz = +01
 fields = timestamp TA PINT
 units_offset = 0 273.15 0
 units_multiplier = 1 1 1
-station_name =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              Capriana
-station_shortname =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              SM Capriana
-station_url =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0431
+station_name = Capriana
+station_shortname = SM Capriana
+station_url = http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0431
 [DATA]
 2016-08-15T00:00:00  16.5 -999.0
 2016-08-15T00:15:00  16.1    0.0
@@ -17750,6 +17750,7 @@ station_url =                                                                   
 2017-02-13T23:15:00   0.8    0.0
 2017-02-13T23:30:00   0.8    0.0
 2017-02-13T23:45:00   0.8    0.0
+2017-02-14T00:00:00   0.9 -999.0
 2017-02-14T00:00:00   0.9    0.0
 2017-02-14T00:00:00   0.9 -999.0
 2017-02-14T00:15:00   0.9    0.0
@@ -17903,6 +17904,7 @@ station_url =                                                                   
 2017-02-15T13:15:00   9.4    0.0
 2017-02-15T13:30:00   9.9    0.0
 2017-02-15T13:45:00   9.6    0.0
+2017-02-15T14:00:00   9.7    0.0
 2017-02-15T14:00:00   9.7    3.2
 2017-02-15T14:00:00   9.7    0.0
 2017-02-15T14:15:00  10.0    0.0
@@ -17935,3 +17937,9 @@ station_url =                                                                   
 2017-02-15T21:00:00   2.8    0.0
 2017-02-15T21:15:00   2.6    0.0
 2017-02-15T21:30:00   2.5    0.0
+2017-02-15T21:45:00   2.5    0.0
+2017-02-15T22:00:00   2.5    0.0
+2017-02-15T22:15:00   2.4    0.0
+2017-02-15T22:30:00   2.0    0.0
+2017-02-15T22:45:00   1.9    0.0
+2017-02-15T23:00:00   1.9    0.0

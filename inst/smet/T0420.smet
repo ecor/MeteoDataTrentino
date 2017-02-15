@@ -5,13 +5,13 @@ latitude = 46.15460594
 longitude = 11.81281575
 altitude = 640
 nodata = -999
-tz =                                                   +01
+tz = +01
 fields = timestamp TA PINT VW DW ISWR
 units_offset = 0 273.15 0 0 0 0
 units_multiplier = 1 1 1 1 1 1
-station_name =                                                   Mezzano
-station_shortname =                                                   SM Mezzano
-station_url =                                                   http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0420
+station_name = Mezzano
+station_shortname = SM Mezzano
+station_url = http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0420
 [DATA]
 2017-02-06T00:00:00  0.3 -999.0 0.5  11   0
 2017-02-06T00:15:00  0.3    1.6 0.1 145   0
@@ -421,6 +421,7 @@ station_url =                                                   http://dati.mete
 2017-02-13T23:15:00  2.7    0.0 1.2  48   0
 2017-02-13T23:30:00  2.6    0.0 0.2  34   0
 2017-02-13T23:45:00  2.6    0.0 0.2  47   0
+2017-02-14T00:15:00  2.5 -999.0 0.4  28   0
 2017-02-14T00:15:00  2.5    0.0 0.4  28   0
 2017-02-14T00:15:00  2.5 -999.0 0.4  28   0
 2017-02-14T00:30:00  2.5    0.0 0.8  30   0
