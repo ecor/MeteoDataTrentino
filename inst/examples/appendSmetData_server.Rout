@@ -17,8 +17,6 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-[Previously saved workspace restored]
-
 > #!/usr/bin/env Rscript
 > # file appendSmetData.R
 > #
@@ -57,7 +55,7 @@ Loading required package: reshape2
 > 
 > 
 > oldsmetdir <- '/home/ecor/local/MeteoDataTrentino/inst/smet' 
-> oldsmetdir <- '/home/ecor/Dropbox/R-packages/MeteoDataTrentino/inst/smet' 
+> ###oldsmetdir <- '/home/ecor/Dropbox/R-packages/MeteoDataTrentino/inst/smet' 
 > appendsmet_dir <- oldsmetdir ###'/home/ecor/Dropbox/R-packages/MeteoDataBayern/inst/a_smet'
 > 
 > ###
@@ -1738,6 +1736,32 @@ Warning in if (!is.na(offset)) { :
 + 	
 + 	
 + }
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
+Warning in RSMET::smet(file = object, ...) : NAs introduced by coercion
 > 
 > 
 > 
@@ -1760,31 +1784,31 @@ Warning in if (!is.na(offset)) { :
 > 
 > appendsmet <- mapply(FUN=collapse.smet,x=newsmet,y=oldsmet)
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0415 == T0415
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 NA   units_multiplier: 1 1 == 1 1 NA   station_id: T0415 == T0415
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0229 == T0229
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 NA   units_multiplier: 1 1 == 1 1 NA   station_id: T0229 == T0229
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0418 == T0418
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 NA   units_multiplier: 1 1 == 1 1 NA   station_id: T0418 == T0418
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA VW DW ISWR == timestamp TA VW DW ISWR PINT   units_offset: 0 273.15 0 0 0 == 0 273.15 0 0 0 0   units_multiplier: 1 1 1 1 1 == 1 1 1 1 1 1   station_id: T0382 == T0382
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA VW DW ISWR == timestamp TA VW DW ISWR PINT   units_offset: 0 273.15 0 0 0 == 0 273.15 0 0 0 NA   units_multiplier: 1 1 1 1 1 == 1 1 1 1 1 NA   station_id: T0382 == T0382
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA VW DW ISWR == timestamp TA VW DW ISWR PINT   units_offset: 0 273.15 0 0 0 == 0 273.15 0 0 0 0   units_multiplier: 1 1 1 1 1 == 1 1 1 1 1 1   station_id: T0379 == T0379
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA VW DW ISWR == timestamp TA VW DW ISWR PINT   units_offset: 0 273.15 0 0 0 == 0 273.15 0 0 0 NA   units_multiplier: 1 1 1 1 1 == 1 1 1 1 1 NA   station_id: T0379 == T0379
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0429 == T0429
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 NA   units_multiplier: 1 1 == 1 1 NA   station_id: T0429 == T0429
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0226 == T0226
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 NA   units_multiplier: 1 1 == 1 1 NA   station_id: T0226 == T0226
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0380 == T0380
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 NA   units_multiplier: 1 1 == 1 1 NA   station_id: T0380 == T0380
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0424 == T0424
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 NA   units_multiplier: 1 1 == 1 1 NA   station_id: T0424 == T0424
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA VW DW ISWR == timestamp TA VW DW ISWR PINT   units_offset: 0 273.15 0 0 0 == 0 273.15 0 0 0 0   units_multiplier: 1 1 1 1 1 == 1 1 1 1 1 1   station_id: T0374 == T0374
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA VW DW ISWR == timestamp TA VW DW ISWR PINT   units_offset: 0 273.15 0 0 0 == 0 273.15 0 0 0 NA   units_multiplier: 1 1 1 1 1 == 1 1 1 1 1 NA   station_id: T0374 == T0374
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0413 == T0413
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 NA   units_multiplier: 1 1 == 1 1 NA   station_id: T0413 == T0413
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA VW DW ISWR == timestamp TA VW DW ISWR PINT   units_offset: 0 273.15 0 0 0 == 0 273.15 0 0 0 0   units_multiplier: 1 1 1 1 1 == 1 1 1 1 1 1   station_id: T0433 == T0433
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA VW DW ISWR == timestamp TA VW DW ISWR PINT   units_offset: 0 273.15 0 0 0 == 0 273.15 0 0 0 NA   units_multiplier: 1 1 1 1 1 == 1 1 1 1 1 NA   station_id: T0433 == T0433
 Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
-  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 0   units_multiplier: 1 1 == 1 1 1   station_id: T0416 == T0416
+  Collapsing SMET : header mismatch!!!   fields: timestamp TA == timestamp TA PINT   units_offset: 0 273.15 == 0 273.15 NA   units_multiplier: 1 1 == 1 1 NA   station_id: T0416 == T0416
 > names(appendsmet) <- sapply(X=appendsmet,FUN=function(x){x@header$station_id})
 > # The new appended smet was created !!
 > # They are written in the following directory: (please modify as youor purpose)
@@ -1916,4 +1940,4 @@ Warning in (function (x, y, headers = NULL, date.field = "timestamp")  :
 > 
 > proc.time()
    user  system elapsed 
-233.009   0.704 264.346 
+224.083   0.344 242.101 

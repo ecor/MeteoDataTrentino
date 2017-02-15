@@ -1,5 +1,5 @@
 
-R version 3.3.0 (2016-05-03) -- "Supposedly Educational"
+R version 3.3.2 (2016-10-31) -- "Sincere Pumpkin Patch"
 Copyright (C) 2016 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -16,8 +16,6 @@ Type 'contributors()' for more information and
 Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
-
-[Previously saved workspace restored]
 
 > # TODO: Add comment
 > # 
@@ -51,10 +49,9 @@ Type 'q()' to quit R.
 Downloading GitHub repo ecor/MeteoDataTrentino@master
 from URL https://api.github.com/repos/ecor/MeteoDataTrentino/zipball/master
 Installing MeteoDataTrentino
-Skipping 1 package ahead of CRAN: RSMET
 '/usr/lib/R/bin/R' --no-site-file --no-environ --no-save --no-restore --quiet  \
   CMD INSTALL  \
-  '/tmp/RtmpYUlLPJ/devtools6a594351115b/ecor-MeteoDataTrentino-05a97b0'  \
+  '/tmp/RtmpmqN5Q9/devtools26652d14ac34/ecor-MeteoDataTrentino-7f07317'  \
   --library='/home/ecor/R/x86_64-pc-linux-gnu-library/3.3' --install-tests 
 
 * installing *source* package ‘MeteoDataTrentino’ ...
@@ -70,4 +67,4 @@ Skipping 1 package ahead of CRAN: RSMET
 > 
 > proc.time()
    user  system elapsed 
-  3.497   0.392  12.059 
+  3.653   0.672  20.043 
