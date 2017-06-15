@@ -7,8 +7,8 @@ altitude = 2376
 nodata = -999
 tz = +01
 fields = timestamp VW DW TA
-units_offset = 0 0 0 NA
-units_multiplier = 1 1 1 NA
+units_offset = 0 0 0 273.15
+units_multiplier = 1 1 1 1
 station_name = Canazei (Coi de Paussa)
 station_shortname = SEBA Coi de Paussa
 station_url = http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0445

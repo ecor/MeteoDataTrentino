@@ -7,8 +7,8 @@ altitude = 2544
 nodata = -999
 tz = +01
 fields = timestamp TA VW DW PINT
-units_offset = 0 273.15 0 0 NA
-units_multiplier = 1 1 1 1 NA
+units_offset = 0 273.15 0 0 0
+units_multiplier = 1 1 1 1 1
 station_name = Ragoli (Rifugio Alimonta)
 station_shortname = SEBA Rif. Alimonta
 station_url = http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0436
