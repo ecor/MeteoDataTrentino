@@ -76,7 +76,7 @@ if (length(oldsmetfiles)>0) {
 
 names_n <- intersect(names(newsmet),names(oldsmet))
 names_u <- union(names(newsmet),names(oldsmet))
-names_diff <- names_n[!(names_u %in% names(oldsmet))]
+names_diff <- names_u[!(names_u %in% names(oldsmet))]
 
 
 oldsmet[names_diff] <- newsmet[names_diff]
