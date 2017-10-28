@@ -6,17 +6,18 @@ longitude = 10.6315825
 altitude = 2975
 nodata = -999
 tz = +01
-fields = timestamp TA PINT
-units_offset = 0 273.15 0
-units_multiplier = 1 1 1
+fields = timestamp TA VW DW PINT
+units_offset = 0 273.15 0 0 NA
+units_multiplier = 1 1 1 1 NA
 station_name = Monte Vioz (Rifugio Mantova)
 station_shortname = MTX Vioz
 station_url = http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0372
 [DATA]
-2017-10-11T09:00:00 20.5 -999
-2017-10-11T13:00:00 21.7 -999
-2017-10-11T13:15:00 21.8    0
-2017-10-11T13:45:00 22.0    0
-2017-10-11T14:00:00 21.9    0
-2017-10-11T15:00:00 22.1    0
-2017-10-11T15:15:00 22.1    0
+2017-10-11T09:00:00 20.5 -999.0 -999 -999
+2017-10-11T13:00:00 21.7 -999.0 -999 -999
+2017-10-11T13:15:00 21.8 -999.0 -999    0
+2017-10-11T13:45:00 22.0 -999.0 -999    0
+2017-10-11T14:00:00 21.9 -999.0 -999    0
+2017-10-11T15:00:00 22.1 -999.0 -999    0
+2017-10-11T15:15:00 22.1 -999.0 -999    0
+2017-10-26T09:30:00  5.8    3.3   82 -999
