@@ -27,7 +27,7 @@ library(RSMET)
 
 source('/home/ecor/Dropbox/R-packages/MeteoDataTrentino/R/getMeteo.R')
 
-oldsmetdir <- '/home/ecor/Dropbox/R-packages/MeteoDataTrentino/inst/smet' 
+oldsmetdir <- '/home/ecor/Dropbox/R-packages/MeteoDataTrentino/inst/smet_20171107' 
 
 appendsmet_dir <- oldsmetdir ###'/home/ecor/Dropbox/R-packages/MeteoDataBayern/inst/a_smet'
 

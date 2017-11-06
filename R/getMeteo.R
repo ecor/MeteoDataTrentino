@@ -215,10 +215,11 @@ getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="http://dati.met
 		names(out)[names(out)=="rsg___W.mq"] <- "ISWR"
 		names(out)[names(out)=="data"] <- "timestamp"
 		names(out)[names(out)=="pioggia___mm"] <- "PINT"
+		names(out)[names(out)=="rh___."] <- "RH"
 		
 		
 		
-		nn <-  c("TA","PINT","VW","DW","ISWR")    
+		nn <-  c("TA","RH","PINT","VW","DW","ISWR")    
 		
 		nn <- names(out)[names(out) %in% nn] 
 		
@@ -264,7 +265,7 @@ getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="http://dati.met
 					
 					
 					offset[names(offset)=="TA"] <- 273.15
-					
+					mult[names(mult)=="RH"] <- 0.01
 				
 					
 					out <- as.smet(out,mult=mult,offset=offset)
