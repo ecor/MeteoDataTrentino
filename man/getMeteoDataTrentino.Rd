@@ -46,4 +46,3 @@ datap <- getMeteoDataTrentino(station=metadata[["T0153"]])
 \author{
 Emanuele Cordano
 }
-

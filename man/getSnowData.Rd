@@ -9,7 +9,8 @@
   url_metadata = "http://dati.meteotrentino.it/service.asmx/listaCampiNeve",
   header.fields = c("station_id", "station_name", "station_shortname",
   "altitude", "location", "longitude", "latitude"),
-  station_id_prefix = "TRENTINO_", smet = TRUE, tz = "Etc/GMT-1", ...)
+  station_id_prefix = "TRENTINO_", smet = TRUE, tz = "Etc/GMT-1",
+  ...)
 }
 \arguments{
 \item{url}{URL with data. Default is \code{"http://dati.meteotrentino.it/service.asmx/tuttiUltimiRilieviNeve"}.}
@@ -46,4 +47,3 @@ out <- getSnowData()
 \author{
 Emanuele Cordano
 }
-

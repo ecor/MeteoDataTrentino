@@ -7,8 +7,8 @@
 
   getMetaDataTrentino(url = "http://dati.meteotrentino.it/service.asmx/listaStazioni",
   return.type = c("data.frame", "attributed.list", "list"),
-  header = c("latitude", "longitude", "station_name", "station_shortname",
-  "altitude"))
+  header = c("latitude", "longitude", "station_name",
+  "station_shortname", "altitude"))
 }
 \arguments{
 \item{url}{URL with data. Default is \code{"http://dati.meteotrentino.it/service.asmx/listaStazioni"}.}
@@ -42,4 +42,3 @@ metadata_snow_l <- getMetaDataTrentino(url=url_snow,return.type="attributed.list
 \author{
 Emanuele Cordano
 }
-
