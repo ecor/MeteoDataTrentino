@@ -267,6 +267,16 @@ getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="http://dati.met
 					offset[names(offset)=="TA"] <- 273.15
 					mult[names(mult)=="RH"] <- 0.01
 				
+					###
+					nn <- names(offset)[names(offset)!="timestamp"]
+					for (itnn in nn) {
+					  
+					  out[,itnn] <- out[,itnn]*mult[itnn]+offset[itnn]
+					  
+					}
+					
+					###
+					
 					
 					out <- as.smet(out,mult=mult,offset=offset)
 		}
