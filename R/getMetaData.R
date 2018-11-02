@@ -135,7 +135,7 @@ getMetaDataTrentino <- function(url="http://dati.meteotrentino.it/service.asmx/l
 		
 		numeric_field <- c("longitude","latitude","x","y","altitude")
 		numeric_field <- numeric_field[numeric_field %in% names(out)]
-a	
+	
 		
 		##outx <<- out
 		
