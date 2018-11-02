@@ -135,13 +135,21 @@ getMetaDataTrentino <- function(url="http://dati.meteotrentino.it/service.asmx/l
 		
 		numeric_field <- c("longitude","latitude","x","y","altitude")
 		numeric_field <- numeric_field[numeric_field %in% names(out)]
-	
+a	
+		
+		##outx <<- out
+		
+		
+		###
+		
 		for (it in numeric_field) {
 			
 			
 			out[,it] <- as.numeric(out[,it])
 		}
 	
+		
+		
 		### CRSs
 		
 		crs_latlon  <- CRS("+proj=longlat +datum=WGS84")
@@ -153,6 +161,20 @@ getMetaDataTrentino <- function(url="http://dati.meteotrentino.it/service.asmx/l
 		
 		cond <- all(c("x","y") %in% names(out))
 		cond <- cond & !all(c("latitude","longitude") %in% names(out))
+		### EC 20181102
+		il <- which(abs(out$latitude)>90)
+		iv <- which(abs(out$longitude)>180)
+		xx <- out$longitude[iv]
+		yy <- out$latitude[il] 
+		xx <- xx*10^(-trunc(log(abs(xx))/log(10)))*10
+		yy <- yy*10^(-trunc(log(abs(yy))/log(10)))*10
+		out$longitude[il] <- xx
+		out$latitude[iv] <- yy
+		
+		##### END EC 20181102
+		
+		###outx <<- out
+		
 		
 		if (cond==TRUE) {
 			
@@ -161,7 +183,10 @@ getMetaDataTrentino <- function(url="http://dati.meteotrentino.it/service.asmx/l
 			
 			coordinates(out) <- ~ x_+y_
 			proj4string(out) <- crs_utm
-			
+			##
+			##
+			##out2 <<- out
+			##
 			out <- spTransform(x=out,CRSobj=crs_latlon)
 			
 			out <- as.data.frame(out)
@@ -185,7 +210,9 @@ getMetaDataTrentino <- function(url="http://dati.meteotrentino.it/service.asmx/l
 			
 			
 			proj4string(out) <- (crs_latlon)
-			
+			out2 <<- out
+			## REMEVA ALL <<- 
+			## SEE: https://stackoverflow.com/questions/50372533/changing-crs-of-a-sf-object
 			out <- spTransform(x=out,CRSobj=(crs_utm))
 			
 			out <- as.data.frame(out)
