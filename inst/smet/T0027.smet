@@ -1,0 +1,32 @@
+SMET 1.1 ASCII
+[HEADER]
+station_id = T0027
+latitude = 46.138717
+longitude = 11.839286
+altitude = 1030
+nodata = -999
+tz = +01
+fields = timestamp TA PINT
+units_offset = 0 273.15 0
+units_multiplier = 1 1 1
+station_name = Val Noana (Diga)
+station_shortname = SM Val Noana
+station_url = http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0027
+[DATA]
+2019-09-30T07:45:00  9.9 -999
+2019-09-30T07:45:00  9.9 -999
+2019-09-30T08:00:00 10.0    0
+2019-09-30T08:15:00 10.2    0
+2019-09-30T08:15:00 10.2    0
+2019-09-30T08:30:00 10.3    0
+2019-09-30T08:30:00 10.3    0
+2019-09-30T08:45:00 10.5    0
+2019-09-30T09:00:00 10.8    0
+2019-09-30T09:00:00 10.8    0
+2019-09-30T09:15:00 11.1    0
+2019-09-30T09:15:00 11.1    0
+2019-09-30T09:30:00 11.6    0
+2019-09-30T09:30:00 11.6    0
+2019-09-30T09:45:00 12.8    0
+2019-09-30T09:45:00 12.8    0
+2019-09-30T10:00:00 14.5    0
