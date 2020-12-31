@@ -4,9 +4,14 @@
 \alias{getMeteoDataTrentino}
 \title{Get data for Trentino Weather Station}
 \usage{
-getMeteoDataTrentino(station = c("T0179", "T0175"),
+getMeteoDataTrentino(
+  station = c("T0179", "T0175"),
   url = "http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=TCODE",
-  verbose = TRUE, tz = "Etc/GMT-1", smet = TRUE, ...)
+  verbose = TRUE,
+  tz = "Etc/GMT-1",
+  smet = TRUE,
+  ...
+)
 }
 \arguments{
 \item{station}{ID code}

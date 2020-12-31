@@ -26,6 +26,7 @@ options(repos = c(CRAN="http://cran.r-project.org"))
 options(warn=-1)
 
 path <- "/home/ecor/Dropbox/R-packages" 
+path <- "/home/ecor/local/rpackages/" 
 pkg_name <- "MeteoDataTrentino"
 pkg_dir <- paste(path,pkg_name,sep="/")
 cran_pkg_path <- paste(path,"toCran",sep="/")
