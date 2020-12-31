@@ -33,8 +33,8 @@ metadata_l <- getMetaDataTrentino(url=url,return.type="attributed.list")
 # SNOW MEASUREMENT STATIONS 
 
 url_snow <- "http://dati.meteotrentino.it/service.asmx/listaCampiNeve"
-metadata_snow <- getMetaDataTrentino(url=url_snow)
-metadata_snow_l <- getMetaDataTrentino(url=url_snow,return.type="attributed.list")
+#metadata_snow <- getMetaDataTrentino(url=url_snow)
+#metadata_snow_l <- getMetaDataTrentino(url=url_snow,return.type="attributed.list")
 
 ### raw_out_data
 

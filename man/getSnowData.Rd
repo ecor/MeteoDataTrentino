@@ -36,7 +36,7 @@ The data are licensed as Open Data and released by Provincia Autonoma di Trento 
 \examples{
 
 
-out <- getSnowData()
+##out <- getSnowData()
 
 ### LEGEND (AINEVA) : http://www.meteotrentino.it/neve-ghiacci/Husky/mod1/legenda-mod1.pdf
 
