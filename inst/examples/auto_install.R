@@ -25,6 +25,6 @@
 ###############################################################################
 rm(list=ls())
 
-library(devtools)
+library(remotes)
 install_github("ecor/MeteoDataTrentino")
 
