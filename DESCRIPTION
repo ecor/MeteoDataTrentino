@@ -11,4 +11,4 @@ Repository: CRAN
 Depends:
     XML,stringr,sp,RSMET
 URL: https://github.com/ecor/MeteoDataTrentino, 
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
