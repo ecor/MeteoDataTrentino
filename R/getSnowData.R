@@ -2,8 +2,8 @@ NULL
 #' Get data for Trentino Weather Station 
 #' 
 
-#' @param url URL with data. Default is \code{"http://dati.meteotrentino.it/service.asmx/tuttiUltimiRilieviNeve"}. 
-#' @param url_metadata URL with data.  Default is \code{"http://dati.meteotrentino.it/service.asmx/listaCampiNeve"}. 
+#' @param url URL with data. Default is \code{"https://dati.meteotrentino.it/service.asmx/tuttiUltimiRilieviNeve"}. 
+#' @param url_metadata URL with data.  Default is \code{"https://dati.meteotrentino.it/service.asmx/listaCampiNeve"}. 
 #' @param tz time zone. Default is \code{Etc?GMT-1}. 
 #' @param smet logical value. If it is \code{TRUE}, data are returned as a list of \code{\link{smet-class}} object(s). 
 #' @param header.fields header fields for the returened \code{\link{smet-class}} objects. See \code{\link{as.smet}}. It is used in case \code{smet==TRUE}.
@@ -17,20 +17,20 @@ NULL
 #' 
 #' @author Emanuele Cordano
 #' 
-#' @details The data are licensed as Open Data and released by Provincia Autonoma di Trento (\url{www.meteotrentino.it}) through \url{http://dati.trentino.it/dataset/dati-recenti-dei-campi-neve}. Please see the link for major details.  
+#' @details The data are licensed as Open Data and released by Provincia Autonoma di Trento (\url{www.meteotrentino.it}) through \url{https://dati.trentino.it/dataset/dati-recenti-dei-campi-neve}. Please see the link for major details.  
 #' @examples 
 #' 
 #' 
 #' ##out <- getSnowData()
 #' 
-#' ### LEGEND (AINEVA) : http://www.meteotrentino.it/neve-ghiacci/Husky/mod1/legenda-mod1.pdf
+#' ### LEGEND (AINEVA) : https://www.meteotrentino.it/neve-ghiacci/Husky/mod1/legenda-mod1.pdf
 #' 
 #' 
 #' 
 #' 
 
-getSnowData <- function(url="http://dati.meteotrentino.it/service.asmx/tuttiUltimiRilieviNeve",
-		url_metadata="http://dati.meteotrentino.it/service.asmx/listaCampiNeve",
+getSnowData <- function(url="https://dati.meteotrentino.it/service.asmx/tuttiUltimiRilieviNeve",
+		url_metadata="https://dati.meteotrentino.it/service.asmx/listaCampiNeve",
 		header.fields=c("station_id","station_name","station_shortname","altitude","location","longitude","latitude"),
 		station_id_prefix="TRENTINO_",
 		smet=TRUE,tz="Etc/GMT-1",...) {

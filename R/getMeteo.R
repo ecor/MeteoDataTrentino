@@ -1,14 +1,14 @@
 
-## http://dati.meteotrentino.it/service.asmx/listaStazioni
+## https://dati.meteotrentino.it/service.asmx/listaStazioni
 NULL
 #' Get data for Trentino Weather Station 
 #' 
 #' @param station ID code 
-#' @param url URL with data. Default is \code{"http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0179"}. 
+#' @param url URL with data. Default is \code{"https://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0179"}. 
 #' @param verbose verbose logical argument
 #' @param tz time zone. Default is \code{Etc/GMT-1}. 
 #' @param smet logical value. If it is \code{TRUE}, data are returned as a list of \code{\link{smet-class}} object(s). 
-#' 
+#' @param header header accepted from \code{metedata} see examples and default.
 #' 
 #' 
 #' @param ... further arguments
@@ -17,7 +17,7 @@ NULL
 #' 
 #' @author Emanuele Cordano
 #'
-#' @details The data are licensed as Open Data and released by Provincia Autonoma di Trento (\url{www.meteotrentino.it}) through \url{http://dati.trentino.it/dataset/dati-recenti-delle-stazioni-meteo}. Please see the link for major details. 
+#' @details The data are licensed as Open Data and released by Provincia Autonoma di Trento (\url{www.meteotrentino.it}) through \url{https://dati.trentino.it/dataset/dati-recenti-delle-stazioni-meteo}. Please see the link for major details. 
 #' 
 #' @importFrom RSMET as.smet
 #' 
@@ -26,14 +26,14 @@ NULL
 #' 
 #' metadata <- getMetaDataTrentino(return.type="list")
 #' 
-#' nn <- names(metadata)[!(names(metadata) %in% c("T0365"))]
-#' 
+#' nn <- metadata $station_id ## names(metadata)[!(names(metadata) %in% c("T0365"))]
+#' \donttest{
 #' # Please uncomment the following run to run the command
 #' # data <- getMeteoDataTrentino(station=metadata[nn])
-#' #
+#' data <- getMeteoDataTrentino(station=nn) 
 #' 
-#' datap <- getMeteoDataTrentino(station=metadata[["T0153"]])
-#' 
+#' #datap <- getMeteoDataTrentino(station=metadata[["T0153"]])
+#' }
 #' 
 #' 
 
@@ -41,9 +41,29 @@ NULL
 #
 #readLines(link)
 
-getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=TCODE",verbose=TRUE,tz="Etc/GMT-1",smet=TRUE,...) {
+getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="https://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=TCODE",verbose=TRUE,tz="Etc/GMT-1",smet=TRUE,
+                                 header=c("station_id","station_name","station_shortname","altitude","latitude","longitude"),...) {
 	
 	####
+  if (is.data.frame(station)) {
+    
+    hh <- header[header %in% names(station)]
+    station <- station[,hh]
+    station00 <- as.list(station[,1])
+    for (i in 1:length(station00)) {
+      
+      attr(station00[[i]],"header") <- as.list(station[i,])
+    ###
+    }
+    station <- station00
+  
+    ###
+    
+   
+    
+  }
+  
+ 
 	if (length(station)>1) {
 		
 		names(station) <- station
@@ -53,7 +73,7 @@ getMeteoDataTrentino <- function(station=c("T0179","T0175"),url="http://dati.met
 		return(out)
 		
 	}
-	
+
 	
 	
 	url <- str_replace(url,"TCODE",station)

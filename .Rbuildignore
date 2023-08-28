@@ -1,2 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+LICENSE
+roxygenize.R
+inst/smet

@@ -1,0 +1,913 @@
+
+R version 4.3.0 (2023-04-21) -- "Already Tomorrow"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> #!/usr/bin/env Rscript
+> # file appendSmetData.R
+> #
+> # This file contains instructions for creating SMET files with weather data of Trentino
+> #
+> # author: Emanuele Cordano on 21-05-2015
+> 
+> #This program is free software: you can redistribute it and/or modify
+> #it under the terms of the GNU General Public License as published by
+> #the Free Software Foundation, either version 3 of the License, or
+> #(at your option) any later version.
+> #
+> #This program is distributed in the hope that it will be useful,
+> #but WITHOUT ANY WARRANTY; without even the implied warranty of
+> #MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> #GNU General Public License for more details.
+> #
+> #You should have received a copy of the GNU General Public License
+> #along with this program.  If not, see <http://www.gnu.org/licenses/>.
+> 
+> ###############################################################################
+> options(warn=1)
+> 
+> rm(list=ls())
+> 
+> 
+> library(MeteoDataTrentino)
+Loading required package: XML
+Loading required package: stringr
+Loading required package: sp
+Loading required package: RSMET
+Loading required package: reshape2
+Loading required package: lubridate
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+> library(RSMET)
+> 
+> 
+> 
+> 
+> oldsmetdir <- '/home/ecor/local/rpackages/rendena100/MeteoDataTrentino/inst/smet' 
+> ###oldsmetdir <- '/home/ecor/Dropbox/R-packages/ MeteoDataTrentino/inst/smet' 
+> appendsmet_dir <- oldsmetdir ###'/home/ecor/Dropbox/R-packages/MeteoDataBayern/inst/a_smet'
+> 
+> ###
+> ###ll <- getMeteoDataTrentino(station = metadata[nn[!(nn %in% c("T0473","T0404"))]]
+> 
+> 
+> ####
+> 
+> metadata <- getMetaDataTrentino(return.type="list")
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/listaStazioni'
+'data.frame':	207 obs. of  13 variables:
+ $ station_id       : chr  "T0154" "T0405" "T0153" "T0146" ...
+ $ station_name     : chr  "Ala (Convento)" "Ala (Maso Le Pozze)" "Ala (Ronchi)" "Aldeno (San Zeno)" ...
+ $ station_shortname: chr  "Ala Convento" "SM Ala Maso Le Pozze" "SM Ala Ronchi" "SM Aldeno San Zeno" ...
+ $ altitude         : num  165 170 692 182 115 85 698 710 843 385 ...
+ $ latitude         : num  45.8 45.8 45.7 46 45.9 ...
+ $ longitude        : num  11 11 11.1 11.1 10.9 ...
+ $ x                : num  655530 657312 660682 662021 646011 ...
+ $ y                : num  5069007 5072278 5067145 5092619 5087135 ...
+ $ inizio           : chr  "01/01/1921" "17/05/2012" "01/08/1927" "01/11/1923" ...
+ $ fine             : chr  "22/06/2005" "none" "none" "none" ...
+ $ location         : chr  "Ala (Convento)" "Ala (Maso Le Pozze)" "Ala (Ronchi)" "Aldeno (San Zeno)" ...
+ $ y_               : num  45.8 45.8 45.7 46 45.9 ...
+ $ x_               : num  11 11 11.1 11.1 10.9 ...
+Maximum error coordinate: 712692.436878 along x and 5147332.927204 along y!
+    station_id                 station_name    station_shortname altitude
+16       T0323           Campodenno (frana)     Campodenno frana      610
+18       T0403            Canazei (Ciampac)           SM Ciampac     2150
+24       T0065               Careser (Diga)      SM Careser Diga     2600
+37       T0160            Cimego (Centrale)      Cimego Centrale      490
+46       T0410               Daone (Pracul)      SM Daone Pracul      897
+49       T0382 Dos Del Sabion (Monte Grual)    SM Dos Del Sabion     1894
+52       T0427               Folgarida Alta    SM Folgarida Alta     1368
+53       T0994              Folgarida Bassa   SM Folgarida Bassa     1280
+103      T0008      Paneveggio (campo neve)        CN Paneveggio     1540
+110      T0425     Passo Pian Delle Fugazze   SM P. Pian Fugazze     1170
+111      T0103                  Passo Rolle       SM Passo Rolle     2012
+119      T0409            Pergine Valsugana SM Pergine Valsugana      498
+137      T0076         Rabbi (San Bernardo)       SM S. Bernardo     1132
+    latitude longitude        x       y     inizio       fine
+16  46.25978  11.02838 656324.0 5124913 30/03/2004 02/08/2016
+18  46.44603  11.76921      0.0       0 10/09/2019       none
+24  46.42258  10.69911 630544.0 5142411 01/01/1930       none
+37  45.92035  10.62704 626142.0 5086558 01/01/1978 03/01/2004
+46  45.97147  10.56310 621026.5 5092065 12/05/2007       none
+49  46.17225  10.81181 639888.7 5114784 16/07/1992       none
+52  46.30186  10.86522 714245.4 5140295 07/11/2018       none
+53  46.30356  10.85912 659321.0 5100368 12/11/2018       none
+103 46.30952  11.74751 711553.0 5132108 15/01/2006       none
+110 45.75900  11.17483 669131.0 5069560 16/05/2012       none
+111 46.29792  11.78712 714648.0 5130925 01/01/1921       none
+119 46.06188  11.24427 673301.0 5102326 31/12/1920       none
+137 46.40137  10.84952 642172.0 5140306 01/01/1986       none
+                        location       x_      y_          err
+16            Campodenno (frana) 656324.0 5124911 1.958873e+00
+18             Canazei (Ciampac) 712692.4 5147333 5.196438e+06
+24                Careser (Diga) 630560.0 5142404 1.746992e+01
+37             Cimego (Centrale) 626165.4 5086485 7.639166e+01
+46                Daone (Pracul) 621096.5 5092065 6.997300e+01
+49  Dos Del Sabion (Monte Grual) 639856.0 5114782 3.273431e+01
+52                Folgarida Alta 643639.8 5129278 7.145995e+04
+53               Folgarida Bassa 643165.6 5129456 3.327291e+04
+103      Paneveggio (campo neve) 711553.0 5132107 7.005242e-01
+110     Passo Pian Delle Fugazze 669130.7 5069571 1.115341e+01
+111                  Passo Rolle 714648.5 5130925 5.316433e-01
+119            Pergine Valsugana 673583.4 5103371 1.082485e+03
+137         Rabbi (San Bernardo) 642172.0 5140307 5.218160e-01
+Warning in getMetaDataTrentino(return.type = "list") :
+  In the above station, error exceeds 0.500000 meters! 
+> 
+> nn <- names(metadata)###[!(names(metadata) %in% c("T0365","T0473","T0404"))]
+> 
+> 
+> newsmet <- getMeteoDataTrentino(station=metadata[nn])
+Importing T0154 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0154
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0154'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0405 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0405
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0405'
+Importing T0153 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0153
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0153'
+Importing T0146 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0146
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0146'
+Importing T0322 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0322
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0322'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0401 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0401
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0401'
+Importing T0204 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0204
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0204'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0402 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0402
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0402'
+Importing T0015 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0015
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0015'
+Importing T0222 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0222
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0222'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0152 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0152
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0152'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0155 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0155
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0155'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0443 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0443
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0443'
+Importing T0415 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0415
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0415'
+Importing T0229 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0229
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0229'
+Importing T0323 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0323
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0323'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0030 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0030
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0030'
+Importing T0403 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0403
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0403'
+Importing T0445 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0445
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0445'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0437 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0437
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0437'
+Importing T0421 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0421
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0421'
+Importing T0029 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0029
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0029'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0431 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0431
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0431'
+Importing T0065 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0065
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0065'
+Importing T0308 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0308
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0308'
+Importing T0418 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0418
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0418'
+Importing T0469 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0469
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0469'
+Importing T0367 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0367
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0367'
+Importing T0107 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0107
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0107'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0118 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0118
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0118'
+Importing T0009 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0009
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0009'
+Importing T0227 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0227
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0227'
+Importing T0066 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0066
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0066'
+Importing T0099 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0099
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0099'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0365 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0365
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0365'
+Importing T0377 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0377
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0377'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0160 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0160
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0160'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0083 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0083
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0083'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0397 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0397
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0397'
+Importing T0068 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0068
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0068'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0017 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0017
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0017'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0156 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0156
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0156'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0157 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0157
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0157'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0158 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0158
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0158'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0373 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0373
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0373'
+Importing T0410 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0410
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0410'
+Importing T0233 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0233
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0233'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0086 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0086
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0086'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0382 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0382
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0382'
+Importing T0379 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0379
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0379'
+Importing T0210 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0210
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0210'
+Importing T0427 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0427
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0427'
+Importing T0994 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0994
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0994'
+Importing T0080 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0080
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0080'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0399 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0399
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0399'
+Importing T0105 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0105
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0105'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0203 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0203
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0203'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0473 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0473
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0473'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0444 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0444
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0444'
+Importing T0439 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0439
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0439'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0442 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0442
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0442'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0426 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0426
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0426'
+Importing T0423 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0423
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0423'
+Importing T0407 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0407
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0407'
+Importing T0113 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0113
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0113'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0178 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0178
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0178'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0209 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0209
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0209'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0429 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0429
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0429'
+Importing T0190 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0190
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0190'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0430 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0430
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0430'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0371 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0371
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0371'
+Importing T0032 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0032
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0032'
+Importing T0121 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0121
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0121'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0245 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0245
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0245'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0010 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0010
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0010'
+Importing T0119 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0119
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0119'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0286 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0286
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0286'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0074 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0074
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0074'
+Importing T0357 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0357
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0357'
+Importing T0238 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0238
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0238'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0375 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0375
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0375'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0404 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0404
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0404'
+Importing T0265 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0265
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0265'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0231 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0231
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0231'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0237 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0237
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0237'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0071 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0071
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0071'
+Importing T0420 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0420
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0420'
+Importing T0090 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0090
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0090'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0408 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0408
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0408'
+Importing T0098 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0098
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0098'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0096 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0096
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0096'
+Importing T0383 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0383
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0383'
+Importing T0182 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0182
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0182'
+Importing T0144 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0144
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0144'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0327 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0327
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0327'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0368 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0368
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0368'
+Importing T0169 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0169
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0169'
+Importing T0226 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0226
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0226'
+Importing T0151 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0151
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0151'
+Importing T0186 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0186
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0186'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0406 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0406
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0406'
+Importing T0267 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0267
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0267'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0008 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0008
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0008'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0355 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0355
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0355'
+Importing T0168 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0168
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0168'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0024 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0024
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0024'
+Importing T0094 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0094
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0094'
+Importing T0384 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0384
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0384'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0082 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0082
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0082'
+Importing T0425 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0425
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0425'
+Importing T0103 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0103
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0103'
+Importing T0369 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0369
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0369'
+Importing T0360 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0360
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0360'
+Importing T0069 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0069
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0069'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0104 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0104
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0104'
+Importing T0064 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0064
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0064'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0366 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0366
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0366'
+Importing T0372 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0372
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0372'
+Importing T0409 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0409
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0409'
+Importing T0092 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0092
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0092'
+Importing T0063 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0063
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0063'
+Importing T0380 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0380
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0380'
+Importing T0140 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0140
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0140'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0428 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0428
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0428'
+Importing T0422 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0422
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0422'
+Importing T0018 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0018
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0018'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0175 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0175
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0175'
+Importing T0435 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0435
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0435'
+Importing T0239 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0239
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0239'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0142 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0142
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0142'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0120 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0120
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0120'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0167 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0167
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0167'
+Importing T0389 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0389
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0389'
+Importing T0102 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0102
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0102'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0324 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0324
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0324'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0241 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0241
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0241'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0076 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0076
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0076'
+Importing T0075 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0075
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0075'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0240 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0240
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0240'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0436 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0436
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0436'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0298 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0298
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0298'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0236 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0236
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0236'
+Importing T0424 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0424
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0424'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0211 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0211
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0211'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0147 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0147
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0147'
+Importing T0374 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0374
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0374'
+Importing T0417 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0417
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0417'
+Importing T0184 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0184
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0184'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0414 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0414
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0414'
+Importing T0021 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0021
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0021'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0450 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0450
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0450'
+Importing T0038 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0038
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0038'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0242 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0242
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0242'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0084 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0084
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0084'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0189 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0189
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0189'
+Importing T0172 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0172
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0172'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0139 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0139
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0139'
+Importing T0396 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0396
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0396'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0115 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0115
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0115'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0116 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0116
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0116'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0212 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0212
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0212'
+Importing T0183 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0183
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0183'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0141 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0141
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0141'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0393 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0393
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0393'
+Importing T0163 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0163
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0163'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0370 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0370
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0370'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0110 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0110
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0110'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0392 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0392
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0392'
+Importing T0014 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0014
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0014'
+Importing T0003 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0003
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0003'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0200 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0200
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0200'
+Importing T0148 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0148
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0148'
+Importing T0376 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0376
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0376'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0179 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0179
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0179'
+Importing T0026 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0026
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0026'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0419 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0419
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0419'
+Importing T0193 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0193
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0193'
+Importing T0354 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0354
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0354'
+Importing T0356 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0356
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0356'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0129 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0129
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0129'
+Importing T0454 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0454
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0454'
+Importing T0137 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0137
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0137'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0135 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0135
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0135'
+Importing T0136 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0136
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0136'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0088 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0088
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0088'
+Importing T0109 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0109
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0109'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0413 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0413
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0413'
+Importing T0177 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0177
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0177'
+Importing T0166 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0166
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0166'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0433 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0433
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0433'
+Importing T0027 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0027
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0027'
+Importing T0432 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0432
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0432'
+Importing T0114 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0114
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0114'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0149 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0149
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0149'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0150 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0150
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0150'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0363 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0363
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0363'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0381 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0381
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0381'
+Importing T0364 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0364
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0364'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0416 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0416
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0416'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0243 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0243
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0243'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0228 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0228
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0228'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0326 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0326
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0326'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0325 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0325
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0325'
+Warning in FUN(X[[i]], ...) : No data found, function  returns NULL!
+Importing T0411 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0411
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0411'
+Importing T0101 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0101
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0101'
+Importing T0059 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0059
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0059'
+Importing T0412 ...  url: http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0412
+Warning in readLines(url) :
+  incomplete final line found on 'http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0412'
+> newsmet <-  newsmet[!sapply(X=newsmet,is.null)]
+> newsmet <-  newsmet[sapply(X=newsmet,FUN=function(x){class(x)=="smet"})]
+> 
+> 
+> 
+> oldsmetfiles <- list.files(oldsmetdir,pattern=".smet",full.name=TRUE)
+> 
+> 
+> 
+> if (length(oldsmetfiles)>0) {
++ 	
++ #	oldsmet <- lapply(X=oldsmetfiles,FUN=function(x) {
++ #				print(x) 
++ #				as.smet(x)
++ #			})
++ 	
++ 	oldsmet <- lapply(X=oldsmetfiles,FUN=as.smet)
++ 	names(oldsmet) <- sapply(X=oldsmet,FUN=function(x){x@header$station_id})
++ 
++ } else {
++ 	
++ 	oldsmet <- newsmet
++ 	
++ 	
++ }
+> 
+> 
+> 
+> names_n <- intersect(names(newsmet),names(oldsmet))
+> names_u <- union(names(newsmet),names(oldsmet))
+> names_diff <- names_u[!(names_u %in% names(oldsmet))]
+> 
+> 
+> oldsmet[names_diff] <- newsmet[names_diff]
+> 
+> names_n <- intersect(names(newsmet),names(oldsmet))
+> 
+> newsmet <- newsmet[names_n]
+> oldsmet <- oldsmet[names_n]
+> 
+> 
+> 
+> 
+> 
+> 
+> appendsmet <- mapply(FUN=collapse.smet,x=newsmet,y=oldsmet)
+Error in prev == v : comparison of these types is not implemented
+Calls: mapply -> <Anonymous>
+Execution halted
+double free or corruption (out)
+Aborted (core dumped)

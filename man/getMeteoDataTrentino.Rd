@@ -6,17 +6,19 @@
 \usage{
 getMeteoDataTrentino(
   station = c("T0179", "T0175"),
-  url = "http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=TCODE",
+  url = "https://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=TCODE",
   verbose = TRUE,
   tz = "Etc/GMT-1",
   smet = TRUE,
+  header = c("station_id", "station_name", "station_shortname", "altitude", "latitude",
+    "longitude"),
   ...
 )
 }
 \arguments{
 \item{station}{ID code}
 
-\item{url}{URL with data. Default is \code{"http://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0179"}.}
+\item{url}{URL with data. Default is \code{"https://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0179"}.}
 
 \item{verbose}{verbose logical argument}
 
@@ -24,27 +26,29 @@ getMeteoDataTrentino(
 
 \item{smet}{logical value. If it is \code{TRUE}, data are returned as a list of \code{\link{smet-class}} object(s).}
 
+\item{header}{header accepted from \code{metedata} see examples and default.}
+
 \item{...}{further arguments}
 }
 \description{
 Get data for Trentino Weather Station
 }
 \details{
-The data are licensed as Open Data and released by Provincia Autonoma di Trento (\url{www.meteotrentino.it}) through \url{http://dati.trentino.it/dataset/dati-recenti-delle-stazioni-meteo}. Please see the link for major details.
+The data are licensed as Open Data and released by Provincia Autonoma di Trento (\url{www.meteotrentino.it}) through \url{https://dati.trentino.it/dataset/dati-recenti-delle-stazioni-meteo}. Please see the link for major details.
 }
 \examples{
 
 
 metadata <- getMetaDataTrentino(return.type="list")
 
-nn <- names(metadata)[!(names(metadata) \%in\% c("T0365"))]
-
+nn <- metadata $station_id ## names(metadata)[!(names(metadata) \%in\% c("T0365"))]
+\donttest{
 # Please uncomment the following run to run the command
 # data <- getMeteoDataTrentino(station=metadata[nn])
-#
+data <- getMeteoDataTrentino(station=nn) 
 
-datap <- getMeteoDataTrentino(station=metadata[["T0153"]])
-
+#datap <- getMeteoDataTrentino(station=metadata[["T0153"]])
+}
 
 
 }

@@ -5,8 +5,8 @@
 \title{Get data for Trentino Weather Station}
 \usage{
 getSnowData(
-  url = "http://dati.meteotrentino.it/service.asmx/tuttiUltimiRilieviNeve",
-  url_metadata = "http://dati.meteotrentino.it/service.asmx/listaCampiNeve",
+  url = "https://dati.meteotrentino.it/service.asmx/tuttiUltimiRilieviNeve",
+  url_metadata = "https://dati.meteotrentino.it/service.asmx/listaCampiNeve",
   header.fields = c("station_id", "station_name", "station_shortname", "altitude",
     "location", "longitude", "latitude"),
   station_id_prefix = "TRENTINO_",
@@ -16,9 +16,9 @@ getSnowData(
 )
 }
 \arguments{
-\item{url}{URL with data. Default is \code{"http://dati.meteotrentino.it/service.asmx/tuttiUltimiRilieviNeve"}.}
+\item{url}{URL with data. Default is \code{"https://dati.meteotrentino.it/service.asmx/tuttiUltimiRilieviNeve"}.}
 
-\item{url_metadata}{URL with data.  Default is \code{"http://dati.meteotrentino.it/service.asmx/listaCampiNeve"}.}
+\item{url_metadata}{URL with data.  Default is \code{"https://dati.meteotrentino.it/service.asmx/listaCampiNeve"}.}
 
 \item{header.fields}{header fields for the returened \code{\link{smet-class}} objects. See \code{\link{as.smet}}. It is used in case \code{smet==TRUE}.}
 
@@ -34,14 +34,14 @@ getSnowData(
 Get data for Trentino Weather Station
 }
 \details{
-The data are licensed as Open Data and released by Provincia Autonoma di Trento (\url{www.meteotrentino.it}) through \url{http://dati.trentino.it/dataset/dati-recenti-dei-campi-neve}. Please see the link for major details.
+The data are licensed as Open Data and released by Provincia Autonoma di Trento (\url{www.meteotrentino.it}) through \url{https://dati.trentino.it/dataset/dati-recenti-dei-campi-neve}. Please see the link for major details.
 }
 \examples{
 
 
 ##out <- getSnowData()
 
-### LEGEND (AINEVA) : http://www.meteotrentino.it/neve-ghiacci/Husky/mod1/legenda-mod1.pdf
+### LEGEND (AINEVA) : https://www.meteotrentino.it/neve-ghiacci/Husky/mod1/legenda-mod1.pdf
 
 
 

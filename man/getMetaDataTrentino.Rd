@@ -5,13 +5,13 @@
 \title{Get metedata for Trentino Weather Station}
 \usage{
 getMetaDataTrentino(
-  url = "http://dati.meteotrentino.it/service.asmx/listaStazioni",
+  url = "https://dati.meteotrentino.it/service.asmx/listaStazioni",
   return.type = c("data.frame", "attributed.list", "list"),
   header = c("latitude", "longitude", "station_name", "station_shortname", "altitude")
 )
 }
 \arguments{
-\item{url}{URL with data. Default is \code{"http://dati.meteotrentino.it/service.asmx/listaStazioni"}.}
+\item{url}{URL with data. Default is \code{"https://dati.meteotrentino.it/service.asmx/listaStazioni"}.}
 
 \item{return.type}{character string indicating the requested type for the function output. Default is \code{"data.frame"}.}
 
@@ -26,7 +26,7 @@ The data are licensed as Open Data and released by Provincia Autonoma di Trento 
 \examples{
 
 # WEATHER STATIONS
-url <-  "http://dati.meteotrentino.it/service.asmx/listaStazioni"
+url <-  "https://dati.meteotrentino.it/service.asmx/listaStazioni"
 metadata <- getMetaDataTrentino(url=url)
 metadata_l <- getMetaDataTrentino(url=url,return.type="attributed.list")
 

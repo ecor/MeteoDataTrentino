@@ -28,7 +28,9 @@ library(MeteoDataTrentino)
 library(RSMET)
 
 
-
+###
+lapply(X=list.files("/home/ecor/local/rpackages/rendena100/MeteoDataTrentino/R",pattern=".R",full.names = TRUE),FUN=source)
+###
 
 oldsmetdir <- '/home/ecor/local/rpackages/rendena100/MeteoDataTrentino/inst/smet' 
 ###oldsmetdir <- '/home/ecor/Dropbox/R-packages/ MeteoDataTrentino/inst/smet' 
@@ -40,69 +42,78 @@ appendsmet_dir <- oldsmetdir ###'/home/ecor/Dropbox/R-packages/MeteoDataBayern/i
 
 ####
 
-metadata <- getMetaDataTrentino(return.type="list")
+metadata <- getMetaDataTrentino(url="https://dati.meteotrentino.it/service.asmx/listaStazioni",return.type="list")
 
-nn <- names(metadata)###[!(names(metadata) %in% c("T0365","T0473","T0404"))]
+##nn <- names(metadata)###[!(names(metadata) %in% c("T0365","T0473","T0404"))]
+nn <- metadata$station_id
 
-
-newsmet <- getMeteoDataTrentino(station=metadata[nn])
+newsmet <- getMeteoDataTrentino(station=nn)
 newsmet <-  newsmet[!sapply(X=newsmet,is.null)]
 newsmet <-  newsmet[sapply(X=newsmet,FUN=function(x){class(x)=="smet"})]
 
 
+# 
+# oldsmetfiles <- list.files(oldsmetdir,pattern=".smet",full.name=TRUE)
+# 
+# 
+# 
+# if (length(oldsmetfiles)>0) {
+# 	
+# #	oldsmet <- lapply(X=oldsmetfiles,FUN=function(x) {
+# #				print(x) 
+# #				as.smet(x)
+# #			})
+# 	
+# 	oldsmet <- lapply(X=oldsmetfiles,FUN=as.smet)
+# 	names(oldsmet) <- sapply(X=oldsmet,FUN=function(x){x@header$station_id})
+# 
+# } else {
+# 	
+# 	oldsmet <- newsmet
+# 	
+# 	
+# }
+# 
+# 
+# 
+# names_n <- intersect(names(newsmet),names(oldsmet))
+# names_u <- union(names(newsmet),names(oldsmet))
+# names_diff <- names_u[!(names_u %in% names(oldsmet))]
+# 
+# 
+# oldsmet[names_diff] <- newsmet[names_diff]
+# 
+# names_n <- intersect(names(newsmet),names(oldsmet))
+# 
+# newsmet <- newsmet[names_n]
+# oldsmet <- oldsmet[names_n]
+# 
+# 
+# 
 
-oldsmetfiles <- list.files(oldsmetdir,pattern=".smet",full.name=TRUE)
+# 
+# 
+# appendsmet <- mapply(FUN=collapse.smet,x=newsmet,y=oldsmet)
+# names(appendsmet) <- sapply(X=appendsmet,FUN=function(x){x@header$station_id})
+# # The new appended smet was created !!
+# # They are written in the following directory: (please modify as youor purpose)
+# # 
+# # appendsmet <- lapply(X=appendsmet,FUN=function(x,dir) {
+# # 			print(x@header$station_id)
+# # 			x@file <- sprintf("%s/%s_%s.smet",dir,x@header$station_id)
+# # 			print(x,file="internal")
+# # 			
+# # 		},dir=appendsmet_dir)
+# # 
+# 
 
 
-
-if (length(oldsmetfiles)>0) {
-	
-#	oldsmet <- lapply(X=oldsmetfiles,FUN=function(x) {
-#				print(x) 
-#				as.smet(x)
-#			})
-	
-	oldsmet <- lapply(X=oldsmetfiles,FUN=as.smet)
-	names(oldsmet) <- sapply(X=oldsmet,FUN=function(x){x@header$station_id})
-
-} else {
-	
-	oldsmet <- newsmet
-	
-	
-}
-
-
-
-names_n <- intersect(names(newsmet),names(oldsmet))
-names_u <- union(names(newsmet),names(oldsmet))
-names_diff <- names_u[!(names_u %in% names(oldsmet))]
-
-
-oldsmet[names_diff] <- newsmet[names_diff]
-
-names_n <- intersect(names(newsmet),names(oldsmet))
-
-newsmet <- newsmet[names_n]
-oldsmet <- oldsmet[names_n]
-
-
-
-
-
-
-appendsmet <- mapply(FUN=collapse.smet,x=newsmet,y=oldsmet)
-names(appendsmet) <- sapply(X=appendsmet,FUN=function(x){x@header$station_id})
-# The new appended smet was created !!
-# They are written in the following directory: (please modify as youor purpose)
-
-appendsmet <- lapply(X=appendsmet,FUN=function(x,dir) {
-			print(x@header$station_id)
-			x@file <- sprintf("%s/%s.smet",dir,x@header$station_id)
-			print(x,file="internal")
-			
-		},dir=appendsmet_dir)
-
+newsmet <- lapply(X=newsmet,FUN=function(x,dir) {
+  print(x@header$station_id)
+  x@file <- sprintf("%s/%s_%s.smet",dir,x@header$station_id,as.character(Sys.time()))
+  print(x,file="internal")
+  
+},dir=appendsmet_dir)
 
 
 

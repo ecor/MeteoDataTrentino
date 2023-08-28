@@ -3,7 +3,7 @@ NULL
 #' Get metedata for Trentino Weather Station 
 #' 
 #' 
-#' @param url URL with data. Default is \code{"http://dati.meteotrentino.it/service.asmx/listaStazioni"}. 
+#' @param url URL with data. Default is \code{"https://dati.meteotrentino.it/service.asmx/listaStazioni"}. 
 #' @param header string vectors of station metadata, used if \code{return.type=="list"}.
 #' @param return.type character string indicating the requested type for the function output. Default is \code{"data.frame"}.
 #'  
@@ -22,7 +22,7 @@ NULL
 #' @examples 
 #' 
 #' # WEATHER STATIONS
-#' url <-  "http://dati.meteotrentino.it/service.asmx/listaStazioni"
+#' url <-  "https://dati.meteotrentino.it/service.asmx/listaStazioni"
 #' metadata <- getMetaDataTrentino(url=url)
 #' metadata_l <- getMetaDataTrentino(url=url,return.type="attributed.list")
 #' 
@@ -36,7 +36,7 @@ NULL
 #' 
 
 
-getMetaDataTrentino <- function(url="http://dati.meteotrentino.it/service.asmx/listaStazioni",return.type=c("data.frame","attributed.list","list"),header=c("latitude","longitude","station_name","station_shortname","altitude")) {
+getMetaDataTrentino <- function(url="https://dati.meteotrentino.it/service.asmx/listaStazioni",return.type=c("data.frame","attributed.list","list"),header=c("latitude","longitude","station_name","station_shortname","altitude")) {
 	
 	
 	out <- readLines(url)
@@ -216,7 +216,7 @@ getMetaDataTrentino <- function(url="http://dati.meteotrentino.it/service.asmx/l
 			out <- spTransform(x=out,CRSobj=(crs_utm))
 			
 			out <- as.data.frame(out)
-			
+			return(out)
 			err_x <- abs(out$x-out$x_)
 			err_y <- abs(out$y-out$y_)
 			
