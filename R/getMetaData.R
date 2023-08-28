@@ -205,12 +205,12 @@ getMetaDataTrentino <- function(url="https://dati.meteotrentino.it/service.asmx/
 			
 			out$y_ <- out$latitude
 			out$x_ <- out$longitude
-			str(out)
+			####str(out)
 			coordinates(out) <- ~ x_+y_
 			
 			
 			proj4string(out) <- (crs_latlon)
-			out2 <<- out
+			###out2 <<- out
 			## REMEVA ALL <<- 
 			## SEE: https://stackoverflow.com/questions/50372533/changing-crs-of-a-sf-object
 			out <- spTransform(x=out,CRSobj=(crs_utm))
